@@ -36,12 +36,12 @@
             android:textSize="23sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
 
             android:layout_below="@+id/dashboard_scramble_tv"
             android:layout_above="@id/dashboard_time"
-            android:layout_margin="30dp"
+            android:layout_margin="10dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/recyclerView_dashboard"
             />

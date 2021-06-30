@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TimerRubiksCube">
-        <activity android:name=".DashboardActivity"></activity>
+        <activity android:name=".HistoryActivity"
+            android:parentActivityName=".DashboardActivity"/>
+        <activity android:name=".DashboardActivity" />
         <activity android:name=".SignInSignUpActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreenActivity">
