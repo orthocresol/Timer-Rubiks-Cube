@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:elevation="3dp"
+    app:contentPadding="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/card_view_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="this is the timing" />
+
+        <TextView
+            android:id="@+id/card_view_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/card_view_plus2"
+            android:text="OK"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/card_view_plus2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toLeftOf="@+id/card_view_dnf"
+            android:text="+2"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/card_view_dnf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toLeftOf="@+id/card_view_delete"
+            android:text="DNF"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/card_view_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="20dp"
+            android:text="X"
+            android:textColor="@color/blue" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -35,13 +35,24 @@
             android:textColor="@color/green_800"
             android:textSize="23sp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+
+            android:layout_below="@+id/dashboard_scramble_tv"
+            android:layout_above="@id/dashboard_time"
+            android:layout_margin="30dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/recyclerView_dashboard"
+            />
+
         <ImageButton
             android:id="@+id/dashboard_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/dashboard_scramble_tv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/dashboard_scramble_tv"
             android:background="?android:selectableItemBackground"
             android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
 
@@ -70,12 +81,12 @@
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_dashboard"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/nav_view_dashboard"
-        app:menu="@menu/menu_navigation_view"
+        android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        android:layout_gravity="start"/>
+        app:menu="@menu/menu_navigation_view" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

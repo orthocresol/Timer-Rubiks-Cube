@@ -14,8 +14,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.yashovardhan99.timeit.Stopwatch
+import org.timerrubikscube.nonactivityclass.RecyclerViewAdapter
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
 
 class DashboardActivity : AppCompatActivity() {
@@ -34,19 +37,15 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var stopwatch: Stopwatch
     lateinit var relativeLayout: RelativeLayout
 
+    var layOutManager : RecyclerView.LayoutManager? = null
+    var adapter : RecyclerViewAdapter? = null
+    var recyclerView: RecyclerView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-
         initVariables()
         clickListeners()
-
-
-
-
-
-
-
     }
 
     private fun clickListeners() {
@@ -84,17 +83,21 @@ class DashboardActivity : AppCompatActivity() {
                 tvTime.setTextColor(ContextCompat.getColor(this, R.color.green_800))
                 toolbar.visibility = View.INVISIBLE
                 startTimeBtn.visibility = View.INVISIBLE
+                recyclerView?.visibility = View.INVISIBLE
                 tvTime.setTextSize(100F)
             }
         })
         relativeLayout.setOnClickListener(View.OnClickListener {
-            stopwatch.stop()
-            tvScramble.visibility = View.VISIBLE
-            nextBtn.visibility = View.VISIBLE
-            tvTime.setTextColor(ContextCompat.getColor(this, R.color.black))
-            toolbar.visibility = View.VISIBLE
-            startTimeBtn.visibility = View.VISIBLE
-            tvTime.setTextSize(70F)
+            if(stopwatch.isStarted) {
+                stopwatch.stop()
+                tvScramble.visibility = View.VISIBLE
+                nextBtn.visibility = View.VISIBLE
+                tvTime.setTextColor(ContextCompat.getColor(this, R.color.black))
+                toolbar.visibility = View.VISIBLE
+                startTimeBtn.visibility = View.VISIBLE
+                recyclerView?.visibility = View.VISIBLE
+                tvTime.setTextSize(70F)
+            }
         })
     }
 
@@ -111,6 +114,13 @@ class DashboardActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+        recyclerView = findViewById(R.id.recyclerView_dashboard)
+
+        layOutManager = LinearLayoutManager(this)
+        recyclerView!!.layoutManager = layOutManager
+        adapter = RecyclerViewAdapter()
+        recyclerView!!.adapter = adapter
+
 
         tvScramble.text = ScrambleGenerator().giveScramble()
         stopwatch= Stopwatch()
