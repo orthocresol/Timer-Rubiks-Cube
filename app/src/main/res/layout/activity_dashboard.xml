@@ -15,16 +15,38 @@
         android:fontFamily="@font/source_code_pro"
         android:gravity="center"
         android:hint="Scramble"
-        android:textSize="23sp"
-        android:textColor="@color/green_300"/>
+        android:textColor="@color/green_300"
+        android:textSize="23sp" />
 
     <ImageButton
         android:id="@+id/dashboard_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dashboard_scramble_tv"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
         android:layout_centerHorizontal="true"
-        android:background="?android:selectableItemBackground"/>
+        android:layout_marginTop="40dp"
+        android:background="?android:selectableItemBackground"
+        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+    <TextView
+        android:id="@+id/dashboard_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/source_code_pro"
+        android:hint="0:00"
+        android:textSize="70sp" />
+
+    <Button
+        android:id="@+id/dashboard_play"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/dashboard_time"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="GO"
+        android:background="@drawable/dashboard_go_button"
+        android:textSize="40sp" />
+
 </RelativeLayout>
