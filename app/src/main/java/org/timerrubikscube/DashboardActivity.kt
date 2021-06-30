@@ -7,9 +7,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -29,34 +31,21 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var toolbar: Toolbar
 
+    lateinit var stopwatch: Stopwatch
+    lateinit var relativeLayout: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
         initVariables()
-
         clickListeners()
 
 
-        tvScramble.text = ScrambleGenerator().giveScramble()
 
-        var stopwatch: Stopwatch = Stopwatch()
-        stopwatch.setTextView(tvTime)
 
-        nextBtn.setOnClickListener(View.OnClickListener {
-            var scramble = ScrambleGenerator().giveScramble()
-            tvScramble.text = scramble
-        })
-        startTimeBtn.setOnClickListener(View.OnClickListener {
-            if (!stopwatch.isStarted) {
-                stopwatch.start()
-                tvScramble.text = ScrambleGenerator().giveScramble()
-            }
-            else {
-                stopwatch.stop()
-            }
-        })
+
+
 
     }
 
@@ -81,6 +70,32 @@ class DashboardActivity : AppCompatActivity() {
             }
             true
         })
+
+        nextBtn.setOnClickListener(View.OnClickListener {
+            var scramble = ScrambleGenerator().giveScramble()
+            tvScramble.text = scramble
+        })
+        startTimeBtn.setOnClickListener(View.OnClickListener {
+            if (!stopwatch.isStarted) {
+                stopwatch.start()
+                tvScramble.text = ScrambleGenerator().giveScramble()
+                tvScramble.visibility = View.INVISIBLE
+                nextBtn.visibility = View.INVISIBLE
+                tvTime.setTextColor(ContextCompat.getColor(this, R.color.green_800))
+                toolbar.visibility = View.INVISIBLE
+                startTimeBtn.visibility = View.INVISIBLE
+                tvTime.setTextSize(100F)
+            }
+        })
+        relativeLayout.setOnClickListener(View.OnClickListener {
+            stopwatch.stop()
+            tvScramble.visibility = View.VISIBLE
+            nextBtn.visibility = View.VISIBLE
+            tvTime.setTextColor(ContextCompat.getColor(this, R.color.black))
+            toolbar.visibility = View.VISIBLE
+            startTimeBtn.visibility = View.VISIBLE
+            tvTime.setTextSize(70F)
+        })
     }
 
     private fun initVariables() {
@@ -89,11 +104,16 @@ class DashboardActivity : AppCompatActivity() {
         tvTime = findViewById(R.id.dashboard_time)
         startTimeBtn = findViewById(R.id.dashboard_play)
         toolbar = findViewById(R.id.dashboard_toolbar)
+        relativeLayout = findViewById(R.id.dashboard_relative_layout)
         setSupportActionBar(toolbar)
         navigationView = findViewById(R.id.nav_view_dashboard)
         drawerLayout = findViewById(R.id.drawer_dashboard)
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        tvScramble.text = ScrambleGenerator().giveScramble()
+        stopwatch= Stopwatch()
+        stopwatch.setTextView(tvTime)
     }
 }

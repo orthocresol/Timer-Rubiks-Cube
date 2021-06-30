@@ -9,29 +9,30 @@
     tools:openDrawer="start">
 
     <RelativeLayout
+        android:id="@+id/dashboard_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/dashboard_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dashboard_toolbar"
             android:background="@color/green_300"
             app:title="Dashboard"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white" />
 
 
         <TextView
             android:id="@+id/dashboard_scramble_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/dashboard_toolbar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:layout_below="@+id/dashboard_toolbar"
             android:fontFamily="@font/source_code_pro"
             android:gravity="center"
             android:hint="Scramble"
-            android:textColor="@color/green_300"
+            android:textColor="@color/green_800"
             android:textSize="23sp" />
 
         <ImageButton
@@ -61,8 +62,8 @@
             android:layout_below="@id/dashboard_time"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
-            android:text="GO"
             android:background="@drawable/dashboard_go_button"
+            android:text="GO"
             android:textSize="40sp" />
 
 
