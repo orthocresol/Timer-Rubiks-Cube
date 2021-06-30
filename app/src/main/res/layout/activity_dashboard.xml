@@ -1,52 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardActivity">
+    tools:context=".DashboardActivity"
+    android:id="@+id/drawer_dashboard"
+    tools:openDrawer="start">
 
-    <TextView
-        android:id="@+id/dashboard_scramble_tv"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dashboard_toolbar"
+            android:background="@color/green_300"
+            app:title="Dashboard"
+            app:titleTextColor="@color/white"/>
+
+
+        <TextView
+            android:id="@+id/dashboard_scramble_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/dashboard_toolbar"
+            android:fontFamily="@font/source_code_pro"
+            android:gravity="center"
+            android:hint="Scramble"
+            android:textColor="@color/green_300"
+            android:textSize="23sp" />
+
+        <ImageButton
+            android:id="@+id/dashboard_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dashboard_scramble_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+        <TextView
+            android:id="@+id/dashboard_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/source_code_pro"
+            android:hint="0:00"
+            android:textSize="70sp" />
+
+        <Button
+            android:id="@+id/dashboard_play"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@id/dashboard_time"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="GO"
+            android:background="@drawable/dashboard_go_button"
+            android:textSize="40sp" />
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/source_code_pro"
-        android:gravity="center"
-        android:hint="Scramble"
-        android:textColor="@color/green_300"
-        android:textSize="23sp" />
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view_dashboard"
+        app:menu="@menu/menu_navigation_view"
+        app:headerLayout="@layout/nav_header"
+        android:layout_gravity="start"/>
 
-    <ImageButton
-        android:id="@+id/dashboard_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dashboard_scramble_tv"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:background="?android:selectableItemBackground"
-        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
 
-    <TextView
-        android:id="@+id/dashboard_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:fontFamily="@font/source_code_pro"
-        android:hint="0:00"
-        android:textSize="70sp" />
-
-    <Button
-        android:id="@+id/dashboard_play"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_below="@id/dashboard_time"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:text="GO"
-        android:background="@drawable/dashboard_go_button"
-        android:textSize="40sp" />
-
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
