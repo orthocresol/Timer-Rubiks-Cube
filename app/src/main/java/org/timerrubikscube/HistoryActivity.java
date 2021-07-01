@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -16,9 +17,13 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.timerrubikscube.nonactivityclass.FirestoreAdapter;
 import org.timerrubikscube.nonactivityclass.Item;
+
+import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -48,6 +53,7 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         adapter.startListening();
+
     }
 
     @Override

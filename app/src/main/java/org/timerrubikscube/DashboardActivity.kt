@@ -17,13 +17,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.*
 import com.yashovardhan99.timeit.Stopwatch
-import org.timerrubikscube.nonactivityclass.FirestoreAdapter
 import org.timerrubikscube.nonactivityclass.FirestoreAdapterForDashboard
 import org.timerrubikscube.nonactivityclass.Item
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
@@ -45,6 +41,10 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var stopwatch: Stopwatch
     lateinit var relativeLayout: RelativeLayout
 
+    var averageOf5: TextView? = null
+    var averageOf12: TextView? = null
+    var averageOf50: TextView? = null
+
     var db = FirebaseFirestore.getInstance()
     var collectionReference = db.collection("Time")
     var adapter: FirestoreAdapterForDashboard? = null
@@ -55,6 +55,7 @@ class DashboardActivity : AppCompatActivity() {
         initVariables()
         clickListeners()
         setupRecyclerView()
+        showAverage()
     }
 
     override fun onStart() {
@@ -115,6 +116,7 @@ class DashboardActivity : AppCompatActivity() {
         })
         relativeLayout.setOnClickListener(View.OnClickListener {
             if(stopwatch.isStarted) {
+                showAverage()
                 val time = tvTime.text.toString()
                 val floatTime = time.toFloat()
                 collectionReference.add(Item(floatTime, Date(), System.currentTimeMillis(), tvScramble.text.toString()))
@@ -151,6 +153,11 @@ class DashboardActivity : AppCompatActivity() {
         startTimeBtn = findViewById(R.id.dashboard_play)
         toolbar = findViewById(R.id.dashboard_toolbar)
         relativeLayout = findViewById(R.id.dashboard_relative_layout)
+
+        averageOf5 = findViewById(R.id.dashboard_averageOf5)
+        averageOf12 = findViewById(R.id.dashboard_averageOf12)
+        averageOf50 = findViewById(R.id.dashboard_averageOf50)
+
         setSupportActionBar(toolbar)
         navigationView = findViewById(R.id.nav_view_dashboard)
         drawerLayout = findViewById(R.id.drawer_dashboard)
@@ -161,5 +168,73 @@ class DashboardActivity : AppCompatActivity() {
         tvScramble.text = ScrambleGenerator().giveScramble()
         stopwatch= Stopwatch()
         stopwatch.setTextView(tvTime)
+    }
+    private fun showAverage(){
+        val timings = ArrayList<Item>()
+
+        collectionReference
+            .orderBy("timeFromBeginning", Query.Direction.DESCENDING)
+            .limit(50)
+            .get()
+            .addOnSuccessListener { queryDocumentSnapshots ->
+                for (documentSnapshot in queryDocumentSnapshots) {
+                    val item = documentSnapshot.toObject(
+                        Item::class.java
+                    )
+                    item.id = documentSnapshot.id
+                    timings.add(item)
+                }
+                Log.d("size", "showAverage: " + timings.size)
+                if (timings.size < 5) {
+                    averageOf5?.text = "DNF"
+                    averageOf12?.text = "DNF"
+                    averageOf50?.text = "DNF"
+                } else if (timings.size < 12) {
+                    averageOf12?.text = "DNF"
+                    averageOf50?.text = "DNF"
+                    var result = 0.0f
+                    for (i in 0..4) {
+                        result += timings[i].timing
+                    }
+                    result /= 5
+                    averageOf5?.text = result.toString()
+                } else if (timings.size < 50) {
+                    averageOf50?.text = "DNF"
+                    var result = 0.0f
+                    for (i in 0..4) {
+                        result += timings[i].timing
+                    }
+                    result /= 5
+                    averageOf5?.text = result.toString()
+                    result = 0.0f
+                    for (i in 0..11) {
+                        result += timings[i].timing
+                    }
+                    result /= 12
+                    averageOf12?.text = result.toString()
+                } else if (timings.size == 50) {
+                    var result = 0.0f
+                    for (i in 0..4) {
+                        result += timings[i].timing
+                    }
+                    result /= 5
+                    Log.d("size", "showAverage: " + result)
+                    averageOf5?.text = result.toString()
+                    result = 0.0f
+                    for (i in 0..11) {
+                        result += timings[i].timing
+                    }
+                    result /= 12
+                    Log.d("size", "showAverage: " + result)
+                    averageOf12?.text = result.toString()
+                    result = 0.0f
+                    for (i in 0..49) {
+                        result += timings[i].timing
+                    }
+                    result /= 50
+                    Log.d("size", "showAverage: " + result)
+                    averageOf50?.text = result.toString()
+                }
+            }
     }
 }

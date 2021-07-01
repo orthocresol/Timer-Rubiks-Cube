@@ -35,6 +35,56 @@
             android:textColor="@color/green_800"
             android:textSize="23sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="avg05"
+            android:textStyle="bold"
+            android:id="@+id/dashboard_averageOf5"
+            android:layout_alignTop="@+id/recyclerView_dashboard"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="avg12"
+            android:textStyle="bold"
+            android:id="@+id/dashboard_averageOf12"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/dashboard_averageOf5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="avg50"
+            android:textStyle="bold"
+            android:id="@+id/dashboard_averageOf50"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/dashboard_averageOf12"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="avg50:  "
+            android:textStyle="bold"
+            android:layout_toLeftOf="@+id/dashboard_averageOf50"
+            android:layout_below="@+id/dashboard_averageOf12"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="avg12:  "
+            android:textStyle="bold"
+            android:layout_toLeftOf="@+id/dashboard_averageOf12"
+            android:layout_below="@+id/dashboard_averageOf5"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="avg5:  "
+            android:textStyle="bold"
+            android:layout_toLeftOf="@+id/dashboard_averageOf5"
+            android:layout_alignTop="@id/recyclerView_dashboard"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
