@@ -29,12 +29,11 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-
         setupRecyclerView();
     }
 
     private void setupRecyclerView() {
-        Query query = collectionReference.orderBy("serialID", Query.Direction.DESCENDING);
+        Query query = collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Item> options = new FirestoreRecyclerOptions.Builder<Item>()
                 .setQuery(query, Item.class)
                 .build();
@@ -43,9 +42,6 @@ public class HistoryActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
-
-
     }
 
     @Override

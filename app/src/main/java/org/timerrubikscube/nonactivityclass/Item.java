@@ -1,5 +1,6 @@
 package org.timerrubikscube.nonactivityclass;
 
+import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
@@ -7,15 +8,18 @@ import java.util.Date;
 public class Item {
     float timing;
     Date timestamp;
-    int serialID;
+    long timeFromBeginning;
+    String scramble;
+    String id;
 
     public Item() {
     }
 
-    public Item(float timing, Date date, int serialID){
+    public Item(float timing, Date timestamp, long timeFromBeginning, String scramble){
         this.timing = timing;
-        timestamp = date;
-        this.serialID = serialID;
+        this.timestamp = timestamp;
+        this.timeFromBeginning = timeFromBeginning;
+        this.scramble = scramble;
     }
 
     public float getTiming() {
@@ -35,11 +39,28 @@ public class Item {
         this.timestamp = timestamp;
     }
 
-    public int getSerialID() {
-        return serialID;
+    public long getTimeFromBeginning() {
+        return timeFromBeginning;
     }
 
-    public void setSerialID(int serialID) {
-        this.serialID = serialID;
+    public void setTimeFromBeginning(long timeFromBeginning) {
+        this.timeFromBeginning = timeFromBeginning;
+    }
+
+    public String getScramble() {
+        return scramble;
+    }
+
+    public void setScramble(String scramble) {
+        this.scramble = scramble;
+    }
+
+    @Exclude
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.yashovardhan99.timeit.Stopwatch
 import org.timerrubikscube.nonactivityclass.FirestoreAdapter
+import org.timerrubikscube.nonactivityclass.FirestoreAdapterForDashboard
 import org.timerrubikscube.nonactivityclass.Item
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
 import java.util.*
@@ -35,9 +36,6 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var tvTime: TextView
     lateinit var startTimeBtn: Button
     lateinit var recyclerView: RecyclerView
-    var serialID = 0
-
-
 
     lateinit var navigationView: NavigationView
     lateinit var toggle: ActionBarDrawerToggle
@@ -47,14 +45,9 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var stopwatch: Stopwatch
     lateinit var relativeLayout: RelativeLayout
 
-/*    var layOutManager : RecyclerView.LayoutManager? = null
-    var adapter : RecyclerViewAdapter? = null
-    var recyclerView: RecyclerView? = null*/
-
     var db = FirebaseFirestore.getInstance()
     var collectionReference = db.collection("Time")
-    var adapter2: FirestoreAdapter? = null
-
+    var adapter: FirestoreAdapterForDashboard? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,44 +59,41 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        adapter2?.startListening()
+        adapter?.startListening()
     }
 
     override fun onStop() {
         super.onStop()
-        adapter2?.stopListening()
+        adapter?.stopListening()
     }
 
     private fun setupRecyclerView() {
-        val query = collectionReference.orderBy("serialID", Query.Direction.DESCENDING).limit(3)
+        val query = collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING).limit(5)
         val options = FirestoreRecyclerOptions.Builder<Item>()
             .setQuery(query, Item::class.java)
             .build()
-        adapter2 = FirestoreAdapter(options)
+        adapter = FirestoreAdapterForDashboard(options)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView_dashboard)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter2
+        recyclerView.adapter = adapter
     }
 
     private fun clickListeners() {
         navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { menuitem ->
             when (menuitem.itemId) {
                 R.id.nav_menu_star -> {
-                    println("star")
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_menu_history -> {
-                    println("history")
                     startActivity(Intent(this@DashboardActivity, HistoryActivity::class.java))
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_menu_settings -> {
-                    println("settings")
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 else -> {
-                    println("Rip")
+
                 }
             }
             true
@@ -113,17 +103,13 @@ class DashboardActivity : AppCompatActivity() {
             var scramble = ScrambleGenerator().giveScramble()
             tvScramble.text = scramble
         })
+
+
         startTimeBtn.setOnClickListener(View.OnClickListener {
             if (!stopwatch.isStarted) {
-                serialID++
                 stopwatch.start()
-                tvScramble.text = ScrambleGenerator().giveScramble()
-                tvScramble.visibility = View.INVISIBLE
-                nextBtn.visibility = View.INVISIBLE
-                tvTime.setTextColor(ContextCompat.getColor(this, R.color.green_800))
-                toolbar.visibility = View.INVISIBLE
-                startTimeBtn.visibility = View.INVISIBLE
-                recyclerView?.visibility = View.INVISIBLE
+
+                makeElementsInvisible()
                 tvTime.setTextSize(100F)
             }
         })
@@ -131,20 +117,32 @@ class DashboardActivity : AppCompatActivity() {
             if(stopwatch.isStarted) {
                 val time = tvTime.text.toString()
                 val floatTime = time.toFloat()
-                collectionReference.add(Item(floatTime, Date(), serialID))
-                
+                collectionReference.add(Item(floatTime, Date(), System.currentTimeMillis(), tvScramble.text.toString()))
+                tvScramble.text = ScrambleGenerator().giveScramble()
                 stopwatch.stop()
-                tvScramble.visibility = View.VISIBLE
-                nextBtn.visibility = View.VISIBLE
-                tvTime.setTextColor(ContextCompat.getColor(this, R.color.black))
-                toolbar.visibility = View.VISIBLE
-                startTimeBtn.visibility = View.VISIBLE
-                recyclerView?.visibility = View.VISIBLE
+                makeElementsVisible()
                 tvTime.setTextSize(70F)
             }
         })
     }
 
+    private fun makeElementsInvisible() {
+        tvScramble.visibility = View.INVISIBLE
+        nextBtn.visibility = View.INVISIBLE
+        tvTime.setTextColor(ContextCompat.getColor(this, R.color.green_800))
+        toolbar.visibility = View.INVISIBLE
+        startTimeBtn.visibility = View.INVISIBLE
+        recyclerView?.visibility = View.INVISIBLE
+    }
+
+    private fun makeElementsVisible() {
+        tvScramble.visibility = View.VISIBLE
+        nextBtn.visibility = View.VISIBLE
+        tvTime.setTextColor(ContextCompat.getColor(this, R.color.black))
+        toolbar.visibility = View.VISIBLE
+        startTimeBtn.visibility = View.VISIBLE
+        recyclerView?.visibility = View.VISIBLE
+    }
 
     private fun initVariables() {
         tvScramble = findViewById(R.id.dashboard_scramble_tv)
@@ -159,13 +157,6 @@ class DashboardActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        /*recyclerView = findViewById(R.id.recyclerView_dashboard)
-
-        layOutManager = LinearLayoutManager(this)
-        recyclerView!!.layoutManager = layOutManager
-        adapter = RecyclerViewAdapter()
-        recyclerView!!.adapter = adapter*/
-
 
         tvScramble.text = ScrambleGenerator().giveScramble()
         stopwatch= Stopwatch()
