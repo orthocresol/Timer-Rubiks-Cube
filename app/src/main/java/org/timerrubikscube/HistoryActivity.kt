@@ -1,64 +1,46 @@
-package org.timerrubikscube;
+package org.timerrubikscube
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import org.timerrubikscube.nonactivityclass.FirestoreAdapter
+import org.timerrubikscube.nonactivityclass.Item
 
-import android.os.Bundle;
-import android.widget.TextView;
-
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import org.timerrubikscube.nonactivityclass.FirestoreAdapter;
-import org.timerrubikscube.nonactivityclass.Item;
-
-import java.util.ArrayList;
-
-public class HistoryActivity extends AppCompatActivity {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference collectionReference = db.collection("Time");
-    FirestoreAdapter adapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
-        setupRecyclerView();
+class HistoryActivity : AppCompatActivity() {
+    var db = FirebaseFirestore.getInstance()
+    val userID = FirebaseAuth.getInstance().currentUser?.uid
+    var collectionReference = db.collection("Time $userID")
+    var adapter: FirestoreAdapter? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_history)
+        setupRecyclerView()
     }
 
-    private void setupRecyclerView() {
-        Query query = collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING);
-        FirestoreRecyclerOptions<Item> options = new FirestoreRecyclerOptions.Builder<Item>()
-                .setQuery(query, Item.class)
-                .build();
-        adapter = new FirestoreAdapter(options);
-        RecyclerView recyclerView = findViewById(R.id.history_recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+    private fun setupRecyclerView() {
+        val query = collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING)
+        val options = FirestoreRecyclerOptions.Builder<Item>()
+            .setQuery(query, Item::class.java)
+            .build()
+        adapter = FirestoreAdapter(options)
+        val recyclerView = findViewById<RecyclerView>(R.id.history_recyclerView)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-
+    override fun onStart() {
+        super.onStart()
+        adapter!!.startListening()
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
+    override fun onStop() {
+        super.onStop()
+        adapter!!.stopListening()
     }
 }

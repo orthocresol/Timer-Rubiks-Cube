@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.yashovardhan99.timeit.Stopwatch
 import org.timerrubikscube.nonactivityclass.FirestoreAdapterForDashboard
@@ -46,7 +47,8 @@ class DashboardActivity : AppCompatActivity() {
     var averageOf50: TextView? = null
 
     var db = FirebaseFirestore.getInstance()
-    var collectionReference = db.collection("Time")
+    val userID = FirebaseAuth.getInstance().currentUser?.uid
+    var collectionReference = db.collection("Time $userID")
     var adapter: FirestoreAdapterForDashboard? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
