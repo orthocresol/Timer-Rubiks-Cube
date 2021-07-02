@@ -2,10 +2,10 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_dashboard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DashboardActivity"
-    android:id="@+id/drawer_dashboard"
     tools:openDrawer="start">
 
     <RelativeLayout
@@ -36,73 +36,83 @@
             android:textSize="23sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="avg05"
-            android:textStyle="bold"
             android:id="@+id/dashboard_averageOf5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@+id/recyclerView_dashboard"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:hint="avg05"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="avg12"
-            android:textStyle="bold"
             android:id="@+id/dashboard_averageOf12"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/dashboard_averageOf5"/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="avg50"
-            android:textStyle="bold"
+            android:layout_below="@+id/dashboard_averageOf5"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:hint="avg12"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/dashboard_averageOf50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dashboard_averageOf12"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/dashboard_averageOf12"/>
+            android:layout_marginRight="10dp"
+            android:hint="avg50"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="avg50:  "
-            android:textStyle="bold"
+            android:layout_below="@+id/dashboard_averageOf12"
             android:layout_toLeftOf="@+id/dashboard_averageOf50"
-            android:layout_below="@+id/dashboard_averageOf12"/>
+            android:text="avg50:  "
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="avg12:  "
-            android:textStyle="bold"
+            android:layout_below="@+id/dashboard_averageOf5"
             android:layout_toLeftOf="@+id/dashboard_averageOf12"
-            android:layout_below="@+id/dashboard_averageOf5"/>
+            android:text="avg12:  "
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="avg5:  "
-            android:textStyle="bold"
+            android:layout_alignTop="@id/recyclerView_dashboard"
             android:layout_toLeftOf="@+id/dashboard_averageOf5"
-            android:layout_alignTop="@id/recyclerView_dashboard"/>
+            android:text="avg5:  "
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last 12 solves"
+            android:layout_below="@+id/dashboard_scramble_tv"
+            android:layout_margin="10dp"
+            android:id="@+id/dashboard_last12solves"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_dashboard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:layout_below="@+id/dashboard_scramble_tv"
-            android:layout_above="@id/dashboard_time"
-            android:layout_margin="10dp"
+            android:layout_below="@+id/dashboard_last12solves"
             android:layout_centerHorizontal="true"
-            android:id="@+id/recyclerView_dashboard"
-            />
+            android:layout_margin="10dp" />
 
         <ImageButton
             android:id="@+id/dashboard_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/dashboard_scramble_tv"
+            android:layout_alignParentRight="true"
             android:background="?android:selectableItemBackground"
             android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
 

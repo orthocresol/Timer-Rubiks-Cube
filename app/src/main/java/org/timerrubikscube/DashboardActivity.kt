@@ -69,7 +69,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        val query = collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING).limit(5)
+        val query = collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING).limit(12)
         val options = FirestoreRecyclerOptions.Builder<Item>()
             .setQuery(query, Item::class.java)
             .build()
@@ -132,18 +132,26 @@ class DashboardActivity : AppCompatActivity() {
         tvScramble.visibility = View.INVISIBLE
         nextBtn.visibility = View.INVISIBLE
         tvTime.setTextColor(ContextCompat.getColor(this, R.color.green_800))
+        relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
         toolbar.visibility = View.INVISIBLE
         startTimeBtn.visibility = View.INVISIBLE
         recyclerView?.visibility = View.INVISIBLE
+        averageOf5?.visibility = View.INVISIBLE
+        averageOf12?.visibility = View.INVISIBLE
+        averageOf50?.visibility = View.INVISIBLE
     }
 
     private fun makeElementsVisible() {
         tvScramble.visibility = View.VISIBLE
         nextBtn.visibility = View.VISIBLE
         tvTime.setTextColor(ContextCompat.getColor(this, R.color.black))
+        relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
         toolbar.visibility = View.VISIBLE
         startTimeBtn.visibility = View.VISIBLE
         recyclerView?.visibility = View.VISIBLE
+        averageOf5?.visibility = View.VISIBLE
+        averageOf12?.visibility = View.VISIBLE
+        averageOf50?.visibility = View.VISIBLE
     }
 
     private fun initVariables() {
@@ -192,49 +200,70 @@ class DashboardActivity : AppCompatActivity() {
                 } else if (timings.size < 12) {
                     averageOf12?.text = "DNF"
                     averageOf50?.text = "DNF"
-                    var result = 0.0f
-                    for (i in 0..4) {
-                        result += timings[i].timing
-                    }
-                    result /= 5
-                    averageOf5?.text = result.toString()
+                    bestOf3(timings)
                 } else if (timings.size < 50) {
                     averageOf50?.text = "DNF"
-                    var result = 0.0f
-                    for (i in 0..4) {
-                        result += timings[i].timing
-                    }
-                    result /= 5
-                    averageOf5?.text = result.toString()
-                    result = 0.0f
-                    for (i in 0..11) {
-                        result += timings[i].timing
-                    }
-                    result /= 12
-                    averageOf12?.text = result.toString()
+                    bestOf3(timings)
+                    bestOf10(timings)
                 } else if (timings.size == 50) {
-                    var result = 0.0f
-                    for (i in 0..4) {
-                        result += timings[i].timing
-                    }
-                    result /= 5
-                    Log.d("size", "showAverage: " + result)
-                    averageOf5?.text = result.toString()
-                    result = 0.0f
-                    for (i in 0..11) {
-                        result += timings[i].timing
-                    }
-                    result /= 12
-                    Log.d("size", "showAverage: " + result)
-                    averageOf12?.text = result.toString()
-                    result = 0.0f
-                    for (i in 0..49) {
-                        result += timings[i].timing
-                    }
-                    result /= 50
-                    Log.d("size", "showAverage: " + result)
-                    averageOf50?.text = result.toString()
+                    bestOf3(timings)
+                    bestOf10(timings)
+                    bestOf48(timings)
                 }
             }
+    }
+
+    private fun bestOf48(timings: ArrayList<Item>) {
+        val arrayo48 = ArrayList<Float>()
+
+        for (i in 0..49) {
+            arrayo48.add(timings[i].timing)
+        }
+
+        Collections.sort(arrayo48)
+        var result = 0.00f
+        for (i in 1..48) {
+            result += arrayo48[i]
+        }
+        result /= 48
+        val toShow = String.format("%.2f", result)
+        averageOf50?.text = toShow
+    }
+
+    private fun bestOf10(timings: ArrayList<Item>) {
+        val arrayo10 = ArrayList<Float>()
+
+        for (i in 0..11) {
+            arrayo10.add(timings[i].timing)
+        }
+
+        Collections.sort(arrayo10)
+        var result = 0.00f
+        for (i in 1..10) {
+            result += arrayo10[i]
+        }
+        result /= 10
+
+        val toShow = String.format("%.2f", result)
+        averageOf12?.text = toShow
+
+    }
+
+    private fun bestOf3(timings: ArrayList<Item>) {
+        val arrayo3 = ArrayList<Float>()
+
+        for (i in 0..4) {
+            arrayo3.add(timings[i].timing)
+        }
+
+        Collections.sort(arrayo3)
+        var result = 0.00f
+        for (i in 1..3) {
+            result += arrayo3[i]
+        }
+        result /= 3
+
+        val toShow = String.format("%.2f", result)
+        averageOf5?.text = toShow
     }
 }
