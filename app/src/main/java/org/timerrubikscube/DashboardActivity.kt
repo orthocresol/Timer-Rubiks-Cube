@@ -1,6 +1,7 @@
 package org.timerrubikscube
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
@@ -38,6 +40,8 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
     lateinit var toolbar: Toolbar
+    lateinit var deleteImgBtn: ImageButton
+    lateinit var plus2Btn: MaterialButton
 
     lateinit var stopwatch: Stopwatch
     lateinit var relativeLayout: RelativeLayout
@@ -45,6 +49,8 @@ class DashboardActivity : AppCompatActivity() {
     var averageOf5: TextView? = null
     var averageOf12: TextView? = null
     var averageOf50: TextView? = null
+
+    var currentItem : Item? = null
 
     var db = FirebaseFirestore.getInstance()
     val userID = FirebaseAuth.getInstance().currentUser?.uid
@@ -107,6 +113,43 @@ class DashboardActivity : AppCompatActivity() {
             tvScramble.text = scramble
         })
 
+        deleteImgBtn.setOnClickListener(View.OnClickListener {
+
+            collectionReference
+                .orderBy("timeFromBeginning", Query.Direction.DESCENDING)
+                .limit(1)
+                .get()
+                .addOnSuccessListener { queryDocumentSnapshots ->
+                    for(documentSnapshot in queryDocumentSnapshots){
+                        val item = documentSnapshot.toObject(
+                            Item::class.java
+                        )
+                        item.id = documentSnapshot.id
+                        collectionReference.document(item.id).delete()
+                    }
+                    showAverage()
+                }
+        })
+
+        plus2Btn.setOnClickListener(View.OnClickListener {
+            collectionReference
+                .orderBy("timeFromBeginning", Query.Direction.DESCENDING)
+                .limit(1)
+                .get()
+                .addOnSuccessListener { queryDocumentSnapshots ->
+                    for(documentSnapshot in queryDocumentSnapshots){
+                        val item = documentSnapshot.toObject(
+                            Item::class.java
+                        )
+                        item.id = documentSnapshot.id
+                        val float : Float = 2.00f + currentItem!!.timing
+                        val itemToSend = Item( float, currentItem?.timestamp, currentItem!!.timeFromBeginning, currentItem?.scramble)
+                        collectionReference.document(item.id).set(itemToSend)
+                    }
+                    showAverage()
+                }
+        })
+
 
         startTimeBtn.setOnClickListener(View.OnClickListener {
             if (!stopwatch.isStarted) {
@@ -121,7 +164,8 @@ class DashboardActivity : AppCompatActivity() {
                 showAverage()
                 val time = tvTime.text.toString()
                 val floatTime = time.toFloat()
-                collectionReference.add(Item(floatTime, Date(), System.currentTimeMillis(), tvScramble.text.toString()))
+                currentItem = Item(floatTime, Date(), System.currentTimeMillis(), tvScramble.text.toString())
+                collectionReference.add(currentItem!!)
                 tvScramble.text = ScrambleGenerator().giveScramble()
                 stopwatch.stop()
                 makeElementsVisible()
@@ -141,6 +185,8 @@ class DashboardActivity : AppCompatActivity() {
         averageOf5?.visibility = View.INVISIBLE
         averageOf12?.visibility = View.INVISIBLE
         averageOf50?.visibility = View.INVISIBLE
+        deleteImgBtn.visibility = View.INVISIBLE
+        plus2Btn.visibility = View.INVISIBLE
     }
 
     private fun makeElementsVisible() {
@@ -154,6 +200,8 @@ class DashboardActivity : AppCompatActivity() {
         averageOf5?.visibility = View.VISIBLE
         averageOf12?.visibility = View.VISIBLE
         averageOf50?.visibility = View.VISIBLE
+        deleteImgBtn.visibility = View.VISIBLE
+        plus2Btn.visibility = View.VISIBLE
     }
 
     private fun initVariables() {
@@ -163,7 +211,8 @@ class DashboardActivity : AppCompatActivity() {
         startTimeBtn = findViewById(R.id.dashboard_play)
         toolbar = findViewById(R.id.dashboard_toolbar)
         relativeLayout = findViewById(R.id.dashboard_relative_layout)
-
+        deleteImgBtn = findViewById(R.id.dashboard_delete)
+        plus2Btn = findViewById(R.id.dashboard_plus2Button)
         averageOf5 = findViewById(R.id.dashboard_averageOf5)
         averageOf12 = findViewById(R.id.dashboard_averageOf12)
         averageOf50 = findViewById(R.id.dashboard_averageOf50)
