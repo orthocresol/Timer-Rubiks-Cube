@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "891855067890",
+    "project_id": "timer---rubik-s-cube",
+    "storage_bucket": "timer---rubik-s-cube.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891855067890:android:5fb1c511100a596d74ce6b",
+        "android_client_info": {
+          "package_name": "org.timerrubikscube"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891855067890-0ou86n3ohc4qkclv91ih5d69k1oj0sv1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Qgn6ZuTbjkywEIvrbsJu3Tkv2wZZK6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891855067890-0ou86n3ohc4qkclv91ih5d69k1oj0sv1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
