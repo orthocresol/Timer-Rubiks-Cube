@@ -158,6 +158,16 @@
             android:text="GO"
             android:textSize="40sp" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_24"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:id="@+id/dashboard_addSession"/>
+
+
 
     </RelativeLayout>
 
@@ -166,6 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:visibility="gone"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_navigation_view" />
 

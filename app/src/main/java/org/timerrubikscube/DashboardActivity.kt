@@ -18,7 +18,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
@@ -26,6 +28,7 @@ import com.yashovardhan99.timeit.Stopwatch
 import org.timerrubikscube.nonactivityclass.FirestoreAdapterForDashboard
 import org.timerrubikscube.nonactivityclass.Item
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
+import org.timerrubikscube.nonactivityclass.Session
 import java.util.*
 
 class DashboardActivity : AppCompatActivity() {
@@ -45,12 +48,13 @@ class DashboardActivity : AppCompatActivity() {
 
     lateinit var stopwatch: Stopwatch
     lateinit var relativeLayout: RelativeLayout
+    lateinit var addSessionBtn: FloatingActionButton
 
     var averageOf5: TextView? = null
     var averageOf12: TextView? = null
     var averageOf50: TextView? = null
 
-    var currentItem : Item? = null
+    var currentItem: Item? = null
 
     var db = FirebaseFirestore.getInstance()
     val userID = FirebaseAuth.getInstance().currentUser?.uid
@@ -60,10 +64,12 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+
         initVariables()
         clickListeners()
-        setupRecyclerView()
+        setSessionNumber()
         showAverage()
+        setupRecyclerView()
     }
 
     override fun onStart() {
@@ -76,16 +82,35 @@ class DashboardActivity : AppCompatActivity() {
         adapter?.stopListening()
     }
 
+    private fun setSessionNumber() {
+        val documentRef = db.collection("session").document(userID!!)
+        documentRef
+            .get()
+            .addOnSuccessListener(OnSuccessListener {
+                if (it.exists()) {
+                    val session = it.toObject(Session::class.java)
+                    val sessionIDtoString = session?.id.toString()
+                    collectionReference =
+                        db.collection("Time").document(userID!!).collection(sessionIDtoString)
+                }
+            })
+    }
+
     private fun setupRecyclerView() {
-        val query = collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING).limit(12)
+
+        val query =
+            collectionReference.orderBy("timeFromBeginning", Query.Direction.DESCENDING).limit(12)
         val options = FirestoreRecyclerOptions.Builder<Item>()
             .setQuery(query, Item::class.java)
             .build()
+
         adapter = FirestoreAdapterForDashboard(options)
+
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView_dashboard)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+        adapter?.startListening()
     }
 
     private fun clickListeners() {
@@ -120,7 +145,7 @@ class DashboardActivity : AppCompatActivity() {
                 .limit(1)
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
-                    for(documentSnapshot in queryDocumentSnapshots){
+                    for (documentSnapshot in queryDocumentSnapshots) {
                         val item = documentSnapshot.toObject(
                             Item::class.java
                         )
@@ -137,13 +162,18 @@ class DashboardActivity : AppCompatActivity() {
                 .limit(1)
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
-                    for(documentSnapshot in queryDocumentSnapshots){
+                    for (documentSnapshot in queryDocumentSnapshots) {
                         val item = documentSnapshot.toObject(
                             Item::class.java
                         )
                         item.id = documentSnapshot.id
-                        val float : Float = 2.00f + currentItem!!.timing
-                        val itemToSend = Item( float, currentItem?.timestamp, currentItem!!.timeFromBeginning, currentItem?.scramble)
+                        val float: Float = 2.00f + currentItem!!.timing
+                        val itemToSend = Item(
+                            float,
+                            currentItem?.timestamp,
+                            currentItem!!.timeFromBeginning,
+                            currentItem?.scramble
+                        )
                         collectionReference.document(item.id).set(itemToSend)
                     }
                     showAverage()
@@ -160,17 +190,35 @@ class DashboardActivity : AppCompatActivity() {
             }
         })
         relativeLayout.setOnClickListener(View.OnClickListener {
-            if(stopwatch.isStarted) {
+            if (stopwatch.isStarted) {
+                setupRecyclerView()
+
                 showAverage()
                 val time = tvTime.text.toString()
                 val floatTime = time.toFloat()
-                currentItem = Item(floatTime, Date(), System.currentTimeMillis(), tvScramble.text.toString())
+                currentItem =
+                    Item(floatTime, Date(), System.currentTimeMillis(), tvScramble.text.toString())
                 collectionReference.add(currentItem!!)
                 tvScramble.text = ScrambleGenerator().giveScramble()
                 stopwatch.stop()
                 makeElementsVisible()
                 tvTime.setTextSize(70F)
             }
+        })
+        addSessionBtn.setOnClickListener(View.OnClickListener {
+            val documentRef = db.collection("session").document(userID!!)
+            documentRef
+                .get()
+                .addOnSuccessListener(OnSuccessListener {
+                    if (it.exists()) {
+                        val session = it.toObject(Session::class.java)
+                        val nextID = session?.id?.plus(1)
+                        documentRef.set(Session("session_name", nextID!!))
+                        val sessionIDtoString = nextID.toString()
+                        collectionReference =
+                            db.collection("Time").document(userID!!).collection(sessionIDtoString)
+                    }
+                })
         })
     }
 
@@ -187,6 +235,7 @@ class DashboardActivity : AppCompatActivity() {
         averageOf50?.visibility = View.INVISIBLE
         deleteImgBtn.visibility = View.INVISIBLE
         plus2Btn.visibility = View.INVISIBLE
+        addSessionBtn.visibility = View.INVISIBLE
     }
 
     private fun makeElementsVisible() {
@@ -202,6 +251,7 @@ class DashboardActivity : AppCompatActivity() {
         averageOf50?.visibility = View.VISIBLE
         deleteImgBtn.visibility = View.VISIBLE
         plus2Btn.visibility = View.VISIBLE
+        addSessionBtn.visibility = View.VISIBLE
     }
 
     private fun initVariables() {
@@ -216,7 +266,7 @@ class DashboardActivity : AppCompatActivity() {
         averageOf5 = findViewById(R.id.dashboard_averageOf5)
         averageOf12 = findViewById(R.id.dashboard_averageOf12)
         averageOf50 = findViewById(R.id.dashboard_averageOf50)
-
+        addSessionBtn = findViewById(R.id.dashboard_addSession)
         setSupportActionBar(toolbar)
         navigationView = findViewById(R.id.nav_view_dashboard)
         drawerLayout = findViewById(R.id.drawer_dashboard)
@@ -225,10 +275,11 @@ class DashboardActivity : AppCompatActivity() {
         toggle.syncState()
 
         tvScramble.text = ScrambleGenerator().giveScramble()
-        stopwatch= Stopwatch()
+        stopwatch = Stopwatch()
         stopwatch.setTextView(tvTime)
     }
-    private fun showAverage(){
+
+    private fun showAverage() {
         val timings = ArrayList<Item>()
 
         collectionReference

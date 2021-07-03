@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 import org.timerrubikscube.DashboardActivity
 import org.timerrubikscube.R
+import org.timerrubikscube.nonactivityclass.Session
 
 
 class SignUpFragment : Fragment() {
@@ -76,10 +79,18 @@ class SignUpFragment : Fragment() {
                             Log.d("SignUp", "Name is updated")
                         }
                     }
-                val intent = Intent(activity, DashboardActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
+
+                val userID = FirebaseAuth.getInstance().currentUser?.uid
+                val ref = FirebaseFirestore.getInstance().collection("session").document(userID!!)
+                val session = Session("session_name", 0)
+                ref.set(session)
+                    .addOnSuccessListener(OnSuccessListener {
+                        val intent = Intent(activity, DashboardActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    })
             }
+
 
             })
     }
