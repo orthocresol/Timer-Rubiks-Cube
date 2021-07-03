@@ -4,16 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_300"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SplashScreenActivity">
 
-    <ImageButton
-        android:id="@+id/splash_screen_logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        android:background="?android:selectableItemBackground"
-        android:scaleType="fitCenter"
-        android:src="@drawable/rubiks_cube_logo" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_rawRes="@raw/rubiks_cube_second"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter"/>
 
 </RelativeLayout>
