@@ -19,6 +19,7 @@ import com.yashovardhan99.timeit.Timer
 
 import org.timerrubikscube.R
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
+import org.w3c.dom.Text
 
 
 class TimerFragment : Fragment() {
@@ -28,6 +29,7 @@ class TimerFragment : Fragment() {
     lateinit var goBtn: AppCompatButton
     lateinit var layout: RelativeLayout
     lateinit var stopwatch: Stopwatch
+    lateinit var alertTv : TextView
     var timer: Timer = Timer(15000)
     lateinit var _context: Context
     lateinit var sw_inspection: SwitchMaterial
@@ -62,14 +64,14 @@ class TimerFragment : Fragment() {
         goBtn.setOnClickListener() {
             if (isInspectionOn && !isInspecting) {
                 isInspecting = true;
-                timer = Timer(15000)
-                timer.setTextView(timeTv)
+                layout.setBackgroundColor(ContextCompat.getColor(_context, R.color.yellow))
                 timer.start()
                 timeTv.setTextColor(ContextCompat.getColor(_context, R.color.red))
 
             } else if (!stopwatch.isStarted && isRunning) {
                 if (isInspectionOn && timer.remainingTime > 0) timer.stop()
                 stopwatch.start()
+                alertTv.visibility = View.INVISIBLE
                 timeTv.setTextColor(ContextCompat.getColor(_context, R.color.black))
             }
         }
@@ -83,10 +85,28 @@ class TimerFragment : Fragment() {
         sw_inspection.setOnClickListener(View.OnClickListener {
             isInspectionOn = sw_inspection.isChecked
         })
+
+        timer.setOnTickListener(object : Timer.OnTickListener {
+            override fun onTick(timer: Timer) {
+                val remTime = timer.remainingTime
+                if (remTime > 7500 && remTime < 8500) {
+                    alertTv.text = "8s!"
+                    alertTv.visibility = View.VISIBLE
+                }
+                if (remTime > 3000 && remTime < 3500) {
+                    alertTv.text = "GO !!!"
+                }
+            }
+
+            override fun onComplete(timer: Timer) {
+                alertTv.text = "DNF"
+            }
+        })
     }
 
     private fun reappearElements() {
         isRunning = false
+        sw_inspection.visibility = View.VISIBLE
         if (isInspectionOn) isInspecting = false;
         scramble.text = ScrambleGenerator().giveScramble()
         scramble.visibility = View.VISIBLE
@@ -98,11 +118,13 @@ class TimerFragment : Fragment() {
 
     private fun disappearElements() {
         isRunning = true
+        sw_inspection.visibility = View.INVISIBLE
         scramble.visibility = View.INVISIBLE
         goBtn.visibility = View.INVISIBLE
         nextScrambleBtn.visibility = View.INVISIBLE
         layout.setBackgroundColor(ContextCompat.getColor(_context!!, R.color.green_300))
         timeTv.setTextSize(100F)
+        if(!isInspectionOn) timeTv.setText("00.00");
     }
 
     private fun initVariable(view: View) {
@@ -115,6 +137,8 @@ class TimerFragment : Fragment() {
         stopwatch = Stopwatch()
         stopwatch.setTextView(timeTv)
         timer.setTextView(timeTv)
+        alertTv = view.findViewById(R.id.timer_alert_8s)
+        alertTv.visibility = View.INVISIBLE
         sw_inspection = view.findViewById(R.id.timer_enable_inspection)
         _context = requireContext()
     }

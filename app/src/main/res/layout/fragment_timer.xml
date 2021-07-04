@@ -19,6 +19,18 @@
         android:textColor="@color/green_800"
         android:textSize="23sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8s!"
+        android:id="@+id/timer_alert_8s"
+        android:layout_alignParentRight="true"
+        android:textSize="30sp"
+        android:textColor="@color/red"
+        android:layout_above="@+id/timer_time"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="20dp"/>
+
     <ImageButton
         android:id="@+id/timer_next"
         android:layout_width="wrap_content"
