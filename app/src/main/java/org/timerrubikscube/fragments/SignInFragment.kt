@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import org.timerrubikscube.DashboardActivity
+import org.timerrubikscube.HomeScreen
 import org.timerrubikscube.R
 
 class SignInFragment : Fragment() {
@@ -62,7 +63,7 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener(OnCompleteListener {task ->
                 if(task.isSuccessful){
                     Log.d("SignIn", "signIn: signed in successfully")
-                    val intent = Intent(activity, DashboardActivity::class.java)
+                    val intent = Intent(activity, HomeScreen::class.java)
                     startActivity(intent)
                     activity?.finish()
                 }

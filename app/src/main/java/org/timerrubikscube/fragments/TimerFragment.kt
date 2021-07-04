@@ -26,7 +26,7 @@ class TimerFragment : Fragment() {
     lateinit var goBtn: AppCompatButton
     lateinit var layout: RelativeLayout
     lateinit var stopwatch: Stopwatch
-    var _context: Context? = null
+    val _context = activity
     var isRunning = false
 
     override fun onCreateView(
@@ -89,7 +89,6 @@ class TimerFragment : Fragment() {
         timeTv = view.findViewById(R.id.timer_time)
         goBtn = view.findViewById(R.id.timer_go)
         layout = view.findViewById(R.id.timer_layout)
-        _context = context
         stopwatch = Stopwatch()
         stopwatch.setTextView(timeTv)
     }
