@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -105,6 +106,7 @@ class SignInFragment : Fragment() {
             .setAction("Close", View.OnClickListener {
 
             })
+            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
             .show()
     }
 

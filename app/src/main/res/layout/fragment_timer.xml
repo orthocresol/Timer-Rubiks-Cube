@@ -49,5 +49,15 @@
         android:text="GO"
         android:textSize="40sp" />
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable inspection"
+        android:id="@+id/timer_enable_inspection"
+        android:checked="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"/>
+
 
 </RelativeLayout>
