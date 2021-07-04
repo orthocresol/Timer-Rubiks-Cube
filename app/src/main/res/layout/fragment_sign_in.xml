@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.SignInFragment">
+    tools:context=".fragments.SignInFragment"
+    android:id="@+id/sign_in_mainLayout">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/sign_in_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sign_in_login_btn"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/paperfly_loading" />
+
+
         <ImageView
+            android:id="@+id/sign_in_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignLeft="@+id/sign_in_password_layout"
-            android:src="@drawable/ic_rubik"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_rubik" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/sign_in_email_layout"
@@ -34,7 +49,7 @@
                 android:id="@+id/sign_in_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,7 +70,7 @@
                 android:id="@+id/sign_in_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,9 +80,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
             android:text="Login"
-            android:textAllCaps="false"
-            android:layout_marginTop="10dp"/>
+            android:textAllCaps="false" />
 
 
     </RelativeLayout>

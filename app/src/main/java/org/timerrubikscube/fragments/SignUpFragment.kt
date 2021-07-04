@@ -6,24 +6,31 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import org.timerrubikscube.DashboardActivity
+import org.timerrubikscube.HomeScreen
 import org.timerrubikscube.R
 
 
 class SignUpFragment : Fragment() {
 
-    lateinit var materialButton: MaterialButton
+    lateinit var registerBtn: MaterialButton
     lateinit var etEmail: TextInputEditText
     lateinit var etPassword: TextInputEditText
     lateinit var etConfirmPassword: TextInputEditText
     lateinit var etName: TextInputEditText
-
+    lateinit var animation: LottieAnimationView
+    lateinit var mainLayout: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,15 +48,26 @@ class SignUpFragment : Fragment() {
     }
 
     private fun initVariables(view: View) {
-        materialButton = view.findViewById(R.id.sign_up_register_btn)
+        registerBtn = view.findViewById(R.id.sign_up_register_btn)
         etName = view.findViewById(R.id.sign_up_name)
         etEmail = view.findViewById(R.id.sign_up_email)
         etPassword = view.findViewById(R.id.sign_up_password)
         etConfirmPassword = view.findViewById(R.id.sign_up_confirm_password)
+        animation = view.findViewById(R.id.sign_up_loading)
+        mainLayout = view.findViewById(R.id.sign_up_mainLayout)
 
-        materialButton.setOnClickListener(View.OnClickListener {
+        registerBtn.setOnClickListener(View.OnClickListener {
             registerAccount()
         })
+    }
+
+    private fun disappearElements() {
+        animation.visibility = View.VISIBLE
+        animation.playAnimation()
+    }
+
+    private fun reappearElements() {
+        animation.visibility = View.INVISIBLE
     }
 
     private fun registerAccount() {
@@ -58,30 +76,52 @@ class SignUpFragment : Fragment() {
         val password = etPassword.text.toString()
         val confirmPassword = etConfirmPassword.text.toString()
 
-        if (passedCriteria(password, confirmPassword, name, email)) return
+        if (passedCriteria(password, confirmPassword, name, email)) {
+            snackbarAlertPasswordNotMatch()
+            return
+        }
+        disappearElements()
         val auth = FirebaseAuth.getInstance()
 
 
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(OnCompleteListener {task ->
-            if(task.isSuccessful){
-                Log.d("SignUp", "registerAccount: account created successfully")
-                val user = auth.currentUser
-                val updateName = UserProfileChangeRequest.Builder()
-                    .setDisplayName(name).build()
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("SignUp", "registerAccount: account created successfully")
+                    val user = auth.currentUser
+                    val updateName = UserProfileChangeRequest.Builder()
+                        .setDisplayName(name).build()
 
-                user!!.updateProfile(updateName)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("SignUp", "Name is updated")
+                    user!!.updateProfile(updateName)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d("SignUp", "Name is updated")
+                            }
                         }
-                    }
-                val intent = Intent(activity, DashboardActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
-            }
+                    val intent = Intent(activity, HomeScreen::class.java)
+                    startActivity(intent)
+                    activity?.finish()
+                } else {
+                    reappearElements()
+                    snackbarAlert()
+                }
 
             })
+    }
+    private fun snackbarAlert() {
+        Snackbar.make(mainLayout, "Registration failed", Snackbar.LENGTH_LONG)
+            .setAction("Close", View.OnClickListener {
+
+            })
+            .show()
+    }
+
+    private fun snackbarAlertPasswordNotMatch() {
+        Snackbar.make(mainLayout, "Password did not match", Snackbar.LENGTH_LONG)
+            .setAction("Close", View.OnClickListener {
+
+            })
+            .show()
     }
 
     private fun passedCriteria(
