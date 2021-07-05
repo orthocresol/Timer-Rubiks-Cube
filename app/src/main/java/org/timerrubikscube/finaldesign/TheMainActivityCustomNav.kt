@@ -6,18 +6,20 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import org.timerrubikscube.R
 import org.timerrubikscube.finaldesign.fragments.FinalViewPagerAdapter
 
-class TheMainActivity : AppCompatActivity() {
+class TheMainActivityCustomNav : AppCompatActivity() {
 
     lateinit var bottomNavigationView : BottomNavigationView
+    lateinit var bottomNavigationBar : ChipNavigationBar
     lateinit var viewPager : ViewPager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_the_main)
+        setContentView(R.layout.activity_the_main_custom_nav)
 
         initVariables()
         clickListeners()
@@ -54,6 +56,7 @@ class TheMainActivity : AppCompatActivity() {
 
     private fun initVariables() {
         bottomNavigationView = findViewById(R.id.main_bottom_nav)
+        bottomNavigationBar = findViewById(R.id.main_custom_bottom_nav)
         viewPager = findViewById(R.id.main_viewpager)
         val _adapter = FinalViewPagerAdapter(supportFragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         viewPager.adapter = _adapter

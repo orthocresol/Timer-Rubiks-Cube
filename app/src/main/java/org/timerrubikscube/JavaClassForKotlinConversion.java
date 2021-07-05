@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.yashovardhan99.timeit.Timer;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +23,28 @@ public class JavaClassForKotlinConversion {
     Timer timer;
     ViewPager viewPager;
     BottomNavigationView bottomNavigationView;
-    public void array(){
+    ChipNavigationBar bottomNavigationBar;
+
+    public void array() {
+
+        bottomNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int i) {
+                switch (i) {
+                    case R.id.timer_bottom_nav:
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case R.id.stat_bottom_nav:
+                        viewPager.setCurrentItem(1);
+                        break;
+                    case R.id.record_bottom_nav:
+                        viewPager.setCurrentItem(2);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -43,7 +65,7 @@ public class JavaClassForKotlinConversion {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.timer_bottom_nav:
                         viewPager.setCurrentItem(0);
                         break;
@@ -71,10 +93,10 @@ public class JavaClassForKotlinConversion {
         timer.setOnTickListener(new Timer.OnTickListener() {
             @Override
             public void onTick(Timer timer) {
-                if(timer.getRemainingTime() == 8000){
+                if (timer.getRemainingTime() == 8000) {
                     Log.d("timer", "onTick: 8s ase baal");
                 }
-                if(timer.getRemainingTime() == 3000){
+                if (timer.getRemainingTime() == 3000) {
                     Log.d("timer", "onTick: 3s ase baal");
                 }
             }

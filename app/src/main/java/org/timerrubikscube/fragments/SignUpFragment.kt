@@ -22,6 +22,7 @@ import org.timerrubikscube.DashboardActivity
 import org.timerrubikscube.HomeScreen
 import org.timerrubikscube.R
 import org.timerrubikscube.finaldesign.TheMainActivity
+import org.timerrubikscube.finaldesign.TheMainActivityCustomNavJava
 
 
 class SignUpFragment : Fragment() {
@@ -100,7 +101,7 @@ class SignUpFragment : Fragment() {
                                 Log.d("SignUp", "Name is updated")
                             }
                         }
-                    val intent = Intent(activity, TheMainActivity::class.java)
+                    val intent = Intent(activity, TheMainActivityCustomNavJava::class.java)
                     startActivity(intent)
                     activity?.finish()
                 } else {

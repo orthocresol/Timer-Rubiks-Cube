@@ -38,7 +38,7 @@
         android:layout_alignTop="@+id/timer_scramble_tv"
         android:layout_alignParentRight="true"
         android:background="?android:selectableItemBackground"
-        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+        android:src="@drawable/ic_baseline_refresh_24" />
 
     <TextView
         android:id="@+id/timer_time"
@@ -68,7 +68,7 @@
         android:id="@+id/timer_enable_inspection"
         android:checked="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/timer_scramble_tv"
         android:layout_margin="20dp"/>
 
 </RelativeLayout>

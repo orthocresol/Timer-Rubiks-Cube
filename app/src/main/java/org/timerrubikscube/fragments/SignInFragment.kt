@@ -23,6 +23,7 @@ import org.timerrubikscube.DashboardActivity
 import org.timerrubikscube.HomeScreen
 import org.timerrubikscube.R
 import org.timerrubikscube.finaldesign.TheMainActivity
+import org.timerrubikscube.finaldesign.TheMainActivityCustomNavJava
 
 class SignInFragment : Fragment() {
 
@@ -91,7 +92,7 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener(OnCompleteListener {task ->
                 if(task.isSuccessful){
                     Log.d("SignIn", "signIn: signed in successfully")
-                    val intent = Intent(activity, TheMainActivity::class.java)
+                    val intent = Intent(activity, TheMainActivityCustomNavJava::class.java)
                     startActivity(intent)
                     activity?.finish()
                 }
