@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".finaldesign.fragments.FinalRecordFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Best"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"
+        android:id="@+id/best_title"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="record_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/best_title"
+        android:text="Single Time: "
+        android:id="@+id/single_time"
+        android:layout_margin="20dp"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.29"
+        android:layout_toRightOf="@+id/single_time"
+        android:layout_below="@+id/best_title"
+        android:layout_margin="20dp"
+        android:id="@+id/value_single_time" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/single_time"
+        android:text="Mean of 3: "
+        android:id="@+id/mean_of_3"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.29"
+        android:layout_toRightOf="@+id/mean_of_3"
+        android:layout_below="@+id/single_time"
+        android:layout_margin="20dp"
+        android:id="@+id/value_mean_of_3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mean_of_3"
+        android:text="Avg of 5: "
+        android:id="@+id/avg_of_5"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.29"
+        android:layout_toRightOf="@+id/avg_of_5"
+        android:layout_below="@+id/mean_of_3"
+        android:layout_margin="20dp"
+        android:id="@+id/value_avg_of_5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avg_of_5"
+        android:text="Avg of 12: "
+        android:id="@+id/avg_of_12"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.29"
+        android:layout_toRightOf="@+id/avg_of_12"
+        android:layout_below="@+id/avg_of_5"
+        android:layout_margin="20dp"
+        android:id="@+id/value_avg_of_12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avg_of_12"
+        android:text="Mean of 50: "
+        android:id="@+id/mean_of_50"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.29"
+        android:layout_toRightOf="@+id/mean_of_50"
+        android:layout_below="@+id/avg_of_12"
+        android:layout_margin="20dp"
+        android:id="@+id/value_mean_of_50" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mean_of_50"
+        android:text="Mean of 100: "
+        android:id="@+id/mean_of_100"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.29"
+        android:layout_toRightOf="@+id/mean_of_100"
+        android:layout_below="@+id/mean_of_50"
+        android:layout_margin="20dp"
+        android:id="@+id/value_mean_of_100" />
+
+
+
+
+
+</RelativeLayout>

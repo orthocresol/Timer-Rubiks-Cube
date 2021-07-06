@@ -27,6 +27,8 @@ public class JavaClassForKotlinConversion {
 
     public void array() {
 
+
+
         bottomNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {

@@ -8,8 +8,8 @@ class FinalViewPagerAdapter(fm: FragmentManager, behavior: Int) :
     FragmentStatePagerAdapter(fm, behavior) {
     override fun getItem(position: Int): Fragment {
         when(position){
-            0 -> return FinalTimerFragment()
-            1 -> return FinalStatFragment()
+            1 -> return FinalTimerFragment()
+            0 -> return FinalStatFragment()
             2 -> return FinalRecordFragment()
         }
         return FinalTimerFragment()

@@ -8,15 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import org.timerrubikscube.R
 import org.timerrubikscube.finaldesign.stat.StatFinalViewPagerAdapter
 import org.timerrubikscube.finaldesign.widget.CustomViewPager
+import org.timerrubikscube.nonactivityclass.Item
 
 class FinalStatFragment : Fragment() {
 
     lateinit var mView : View
     lateinit var tabLayout: TabLayout
     lateinit var viewPager : CustomViewPager
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +33,8 @@ class FinalStatFragment : Fragment() {
 
         return mView
     }
+
+
 
     private fun initVariables() {
         tabLayout = mView.findViewById(R.id.stat_tabLayout)

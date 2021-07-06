@@ -271,6 +271,8 @@ class DashboardActivity : AppCompatActivity() {
             arrayo48.add(timings[i].timing)
         }
 
+
+
         Collections.sort(arrayo48)
         var result = 0.00f
         for (i in 1..48) {

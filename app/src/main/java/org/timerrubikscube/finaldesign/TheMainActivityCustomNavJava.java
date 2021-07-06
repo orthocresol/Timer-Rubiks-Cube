@@ -35,10 +35,10 @@ public class TheMainActivityCustomNavJava extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 switch (position) {
-                    case 0:
+                    case 1:
                         bottomNavigationBar.setItemSelected(R.id.timer_bottom_nav, true);
                         break;
-                    case 1:
+                    case 0:
                         bottomNavigationBar.setItemSelected(R.id.stat_bottom_nav, true);
                         break;
                     case 2:
@@ -58,10 +58,10 @@ public class TheMainActivityCustomNavJava extends AppCompatActivity {
             public void onItemSelected(int i) {
                 switch (i) {
                     case R.id.timer_bottom_nav:
-                        viewPager.setCurrentItem(0);
+                        viewPager.setCurrentItem(1);
                         break;
                     case R.id.stat_bottom_nav:
-                        viewPager.setCurrentItem(1);
+                        viewPager.setCurrentItem(0);
                         break;
                     case R.id.record_bottom_nav:
                         viewPager.setCurrentItem(2);
@@ -76,6 +76,7 @@ public class TheMainActivityCustomNavJava extends AppCompatActivity {
         viewPager = findViewById(R.id.main_custom_viewpager);
         FinalViewPagerAdapter _adapter = new FinalViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(_adapter);
+        viewPager.setCurrentItem(1);
         bottomNavigationBar.setItemSelected(R.id.timer_bottom_nav, true);
     }
 }

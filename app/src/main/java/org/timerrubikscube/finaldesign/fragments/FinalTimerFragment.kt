@@ -14,12 +14,18 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.yashovardhan99.timeit.Stopwatch
 import com.yashovardhan99.timeit.Timer
 
 import org.timerrubikscube.R
+import org.timerrubikscube.nonactivityclass.Item
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
 import org.w3c.dom.Text
+import java.time.LocalDateTime
+import java.util.*
 
 
 class FinalTimerFragment : Fragment() {
@@ -36,6 +42,9 @@ class FinalTimerFragment : Fragment() {
     var isInspectionOn = true
     var isInspecting = false
     var isRunning = false
+
+    var userID = FirebaseAuth.getInstance().currentUser?.uid
+    var db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,7 +87,7 @@ class FinalTimerFragment : Fragment() {
         layout.setOnClickListener(View.OnClickListener {
             if (stopwatch.isStarted) {
                 stopwatch.stop()
-
+                recordSolve()
                 reappearElements()
             }
         })
@@ -102,6 +111,16 @@ class FinalTimerFragment : Fragment() {
                 alertTv.text = "DNF"
             }
         })
+    }
+
+
+    private fun recordSolve() {
+        val strScramble = scramble.text.toString()
+        val date = Date()
+        val timing = timeTv.text.toString().toFloat()
+        val timeFromBeginning = System.currentTimeMillis()
+        val item = Item(timing, date, timeFromBeginning, strScramble)
+        db.collection("Solve $userID").add(item)
     }
 
     private fun reappearElements() {

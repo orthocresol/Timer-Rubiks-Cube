@@ -2,17 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/timer_bottom_nav"
-        android:title="Timer"
-        android:icon="@drawable/ic_baseline_timer_24"
-        app:cnb_backgroundColor="#FFEB3B"/>
-    <item android:id="@+id/stat_bottom_nav"
-        android:title="Statistics"
+
+    <item
+        android:id="@+id/stat_bottom_nav"
         android:icon="@drawable/ic_statistics"
-        app:cnb_backgroundColor="#FFC107"/>
-    <item android:id="@+id/record_bottom_nav"
-        android:title="Records"
+        android:title="Statistics"
+        app:cnb_backgroundColor="#FFEB3B" />
+
+    <item
+        android:id="@+id/timer_bottom_nav"
+        android:icon="@drawable/ic_baseline_timer_24"
+        android:title="Timer"
+        app:cnb_backgroundColor="#FFEB3B" />
+
+    <item
+        android:id="@+id/record_bottom_nav"
         android:icon="@drawable/ic_records"
-        app:cnb_backgroundColor="#FF9800"/>
+        android:title="Records"
+        app:cnb_backgroundColor="#FFEB3B" />
 
 </menu>

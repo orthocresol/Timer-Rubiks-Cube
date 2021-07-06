@@ -20,7 +20,7 @@ class StatFinalViewPagerAdapter(fm: FragmentManager, behavior: Int) :
 
     override fun getPageTitle(position: Int): CharSequence? {
         when(position){
-            0 -> return "Statistics"
+            0 -> return "Solves"
             1 -> return "Graph"
         }
         return "Statistics"
