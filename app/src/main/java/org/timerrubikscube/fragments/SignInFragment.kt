@@ -19,10 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
-import org.timerrubikscube.DashboardActivity
-import org.timerrubikscube.HomeScreen
 import org.timerrubikscube.R
-import org.timerrubikscube.finaldesign.TheMainActivity
 import org.timerrubikscube.finaldesign.TheMainActivityCustomNavJava
 
 class SignInFragment : Fragment() {

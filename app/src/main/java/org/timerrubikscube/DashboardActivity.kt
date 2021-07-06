@@ -1,4 +1,5 @@
 package org.timerrubikscube
+//obsolote, I changed lines
 
 import android.content.Intent
 import android.media.Image
@@ -23,11 +24,10 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.yashovardhan99.timeit.Stopwatch
-import org.timerrubikscube.nonactivityclass.FirestoreAdapterForDashboard
 import org.timerrubikscube.nonactivityclass.Item
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
 import java.util.*
-
+/*
 class DashboardActivity : AppCompatActivity() {
 
     lateinit var tvScramble: TextView
@@ -95,7 +95,7 @@ class DashboardActivity : AppCompatActivity() {
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_menu_history -> {
-                    startActivity(Intent(this@DashboardActivity, HistoryActivity::class.java))
+                    //startActivity(Intent(this@DashboardActivity, HistoryActivity::class.java))
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_menu_settings -> {
@@ -318,3 +318,5 @@ class DashboardActivity : AppCompatActivity() {
         averageOf5?.text = toShow
     }
 }
+
+ */
