@@ -1,5 +1,6 @@
 package org.timerrubikscube;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,12 +14,16 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.yashovardhan99.timeit.Timer;
 
 import org.jetbrains.annotations.NotNull;
-import org.timerrubikscube.nonactivityclass.Item;
+import org.timerrubikscube.finaldesign.fragments.FinalTimerFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class JavaClassForKotlinConversion {
+
+
+
+    FinalTimerFragment.FragmentTimerListener listener;
     Button b = null;
     Timer timer;
     ViewPager viewPager;
@@ -26,9 +31,6 @@ public class JavaClassForKotlinConversion {
     ChipNavigationBar bottomNavigationBar;
 
     public void array() {
-
-
-
         bottomNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {

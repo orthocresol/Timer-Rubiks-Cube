@@ -5,13 +5,16 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import org.timerrubikscube.R;
+import org.timerrubikscube.finaldesign.fragments.FinalTimerFragment;
 import org.timerrubikscube.finaldesign.fragments.FinalViewPagerAdapter;
 
-public class TheMainActivityCustomNavJava extends AppCompatActivity {
+public class TheMainActivityCustomNavJava extends AppCompatActivity implements FinalTimerFragment.FragmentTimerListener {
     ChipNavigationBar bottomNavigationBar;
     ViewPager viewPager;
 
@@ -78,5 +81,15 @@ public class TheMainActivityCustomNavJava extends AppCompatActivity {
         viewPager.setAdapter(_adapter);
         viewPager.setCurrentItem(1);
         bottomNavigationBar.setItemSelected(R.id.timer_bottom_nav, true);
+    }
+
+    @Override
+    public void hideBottomNav() {
+        bottomNavigationBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showBottomNav() {
+        bottomNavigationBar.setVisibility(View.VISIBLE);
     }
 }

@@ -2,7 +2,6 @@ package org.timerrubikscube.finaldesign.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnLongClickListener
@@ -15,16 +14,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.yashovardhan99.timeit.Stopwatch
 import com.yashovardhan99.timeit.Timer
-
 import org.timerrubikscube.R
 import org.timerrubikscube.nonactivityclass.Item
 import org.timerrubikscube.nonactivityclass.ScrambleGenerator
-import org.w3c.dom.Text
-import java.time.LocalDateTime
 import java.util.*
 
 
@@ -42,9 +37,28 @@ class FinalTimerFragment : Fragment() {
     var isInspectionOn = true
     var isInspecting = false
     var isRunning = false
+    var listener : FragmentTimerListener? = null
 
     var userID = FirebaseAuth.getInstance().currentUser?.uid
     var db = FirebaseFirestore.getInstance()
+
+    interface FragmentTimerListener {
+        fun hideBottomNav()
+        fun showBottomNav()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is FragmentTimerListener) {
+            listener = context
+        }
+
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,8 +80,10 @@ class FinalTimerFragment : Fragment() {
         goBtn.setOnLongClickListener(OnLongClickListener {
             if (isInspectionOn && !isInspecting) {
                 // nothing here
-            } else
+            } else {
                 disappearElements()
+                listener?.hideBottomNav()
+            }
             false
         })
         goBtn.setOnClickListener() {
@@ -75,11 +91,13 @@ class FinalTimerFragment : Fragment() {
                 isInspecting = true;
                 layout.setBackgroundColor(ContextCompat.getColor(_context, R.color.yellow))
                 timer.start()
+
                 timeTv.setTextColor(ContextCompat.getColor(_context, R.color.red))
 
             } else if (!stopwatch.isStarted && isRunning) {
                 if (isInspectionOn && timer.remainingTime > 0) timer.stop()
                 stopwatch.start()
+
                 alertTv.visibility = View.INVISIBLE
                 timeTv.setTextColor(ContextCompat.getColor(_context, R.color.black))
             }
@@ -89,6 +107,7 @@ class FinalTimerFragment : Fragment() {
                 stopwatch.stop()
                 recordSolve()
                 reappearElements()
+                listener?.showBottomNav()
             }
         })
         sw_inspection.setOnClickListener(View.OnClickListener {
