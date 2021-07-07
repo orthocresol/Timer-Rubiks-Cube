@@ -2,6 +2,8 @@ package org.timerrubikscube.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +34,20 @@ class SignUpFragment : Fragment() {
     lateinit var animation: LottieAnimationView
     lateinit var mainLayout: FrameLayout
 
+    var registerTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            val name = etName.text.toString().trim()
+            val confirmPassword = etConfirmPassword.text.toString().trim()
+
+            registerBtn.isEnabled = !email.isEmpty() && !password.isEmpty() && !name.isEmpty() && !confirmPassword.isEmpty()
+
+        }
+        override fun afterTextChanged(s: Editable) {}
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -55,6 +71,12 @@ class SignUpFragment : Fragment() {
         etConfirmPassword = view.findViewById(R.id.sign_up_confirm_password)
         animation = view.findViewById(R.id.sign_up_loading)
         mainLayout = view.findViewById(R.id.sign_up_mainLayout)
+
+        etName.addTextChangedListener(registerTextWatcher)
+        etEmail.addTextChangedListener(registerTextWatcher)
+        etConfirmPassword.addTextChangedListener(registerTextWatcher)
+        etPassword.addTextChangedListener(registerTextWatcher)
+        registerBtn.isEnabled = false
 
         registerBtn.setOnClickListener(View.OnClickListener {
             registerAccount()

@@ -1,6 +1,8 @@
 package org.timerrubikscube;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +22,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class JavaClassForKotlinConversion {
+    TextWatcher loginTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+    Button btnLogin;
 
 
     FinalTimerFragment.FragmentTimerListener listener;
@@ -31,6 +49,8 @@ public class JavaClassForKotlinConversion {
     ChipNavigationBar bottomNavigationBar;
 
     public void array() {
+
+
         bottomNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {

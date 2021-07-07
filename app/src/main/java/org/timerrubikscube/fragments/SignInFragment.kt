@@ -2,14 +2,14 @@ package org.timerrubikscube.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.tasks.OnCompleteListener
@@ -32,6 +32,16 @@ class SignInFragment : Fragment() {
     lateinit var imgLogo: ImageView
     lateinit var animation: LottieAnimationView
     lateinit var mainLayout: FrameLayout
+    var loginTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            btnLogin.isEnabled = !email.isEmpty() && !password.isEmpty()
+
+        }
+        override fun afterTextChanged(s: Editable) {}
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +62,13 @@ class SignInFragment : Fragment() {
 
     private fun initVariables(view: View) {
         etEmail = view.findViewById(R.id.sign_in_email)
+        etEmail.addTextChangedListener(loginTextWatcher)
         etEmailLayout = view.findViewById(R.id.sign_in_email_layout)
         etPassword = view.findViewById(R.id.sign_in_password)
+        etPassword.addTextChangedListener(loginTextWatcher)
         etPasswordLayout = view.findViewById(R.id.sign_in_password_layout)
         btnLogin = view.findViewById(R.id.sign_in_login_btn)
+        btnLogin.isEnabled = false
         imgLogo = view.findViewById(R.id.sign_in_logo)
         animation = view.findViewById(R.id.sign_in_loading)
         mainLayout = view.findViewById(R.id.sign_in_mainLayout)
