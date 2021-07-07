@@ -13,10 +13,11 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import org.timerrubikscube.R;
 import org.timerrubikscube.finaldesign.fragments.FinalTimerFragment;
 import org.timerrubikscube.finaldesign.fragments.FinalViewPagerAdapter;
+import org.timerrubikscube.finaldesign.widget.CustomViewPager;
 
 public class TheMainActivityCustomNavJava extends AppCompatActivity implements FinalTimerFragment.FragmentTimerListener {
     ChipNavigationBar bottomNavigationBar;
-    ViewPager viewPager;
+    CustomViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class TheMainActivityCustomNavJava extends AppCompatActivity implements F
         viewPager = findViewById(R.id.main_custom_viewpager);
         FinalViewPagerAdapter _adapter = new FinalViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(_adapter);
+        viewPager.setPagingEnabled(false);
         viewPager.setCurrentItem(1);
         bottomNavigationBar.setItemSelected(R.id.timer_bottom_nav, true);
     }
