@@ -1,12 +1,13 @@
-package org.timerrubikscube
+package org.timerrubikscube.aatimer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import org.timerrubikscube.fragments.SignInFragment
-import org.timerrubikscube.fragments.SignUpFragment
-import org.timerrubikscube.fragments.adapters.ViewPagerAdapter
+import org.timerrubikscube.R
+import org.timerrubikscube.aatimer.fragments.SignInFragment
+import org.timerrubikscube.aatimer.fragments.SignUpFragment
+import org.timerrubikscube.aatimer.adapters.ViewPagerAdapter
 
 class SignInSignUpActivity : AppCompatActivity() {
     lateinit var viewPager: ViewPager

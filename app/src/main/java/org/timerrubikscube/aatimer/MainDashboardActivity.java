@@ -1,28 +1,27 @@
-package org.timerrubikscube.finaldesign;
+package org.timerrubikscube.aatimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import org.timerrubikscube.R;
-import org.timerrubikscube.finaldesign.fragments.FinalTimerFragment;
-import org.timerrubikscube.finaldesign.fragments.FinalViewPagerAdapter;
-import org.timerrubikscube.finaldesign.widget.CustomViewPager;
+import org.timerrubikscube.aatimer.fragments.TimerFragment;
+import org.timerrubikscube.aatimer.fragments.ViewPagerAdapter;
+import org.timerrubikscube.aatimer.widget.CustomViewPager;
 
-public class TheMainActivityCustomNavJava extends AppCompatActivity implements FinalTimerFragment.FragmentTimerListener {
+public class MainDashboardActivity extends AppCompatActivity implements TimerFragment.FragmentTimerListener {
     ChipNavigationBar bottomNavigationBar;
     CustomViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_the_main_custom_nav);
+        setContentView(R.layout.activity_main_dashboard);
 
         initVariables();
         clickListeners();
@@ -78,7 +77,7 @@ public class TheMainActivityCustomNavJava extends AppCompatActivity implements F
     private void initVariables() {
         bottomNavigationBar = findViewById(R.id.main_custom_bottom_nav);
         viewPager = findViewById(R.id.main_custom_viewpager);
-        FinalViewPagerAdapter _adapter = new FinalViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        ViewPagerAdapter _adapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(_adapter);
         viewPager.setPagingEnabled(false);
         viewPager.setCurrentItem(1);

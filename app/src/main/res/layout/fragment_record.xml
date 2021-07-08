@@ -3,122 +3,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".finaldesign.fragments.FinalRecordFragment">
+    tools:context=".aatimer.fragments.RecordFragment">
+
 
     <TextView
+        android:id="@+id/best_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Best"
-        android:textColor="@color/black"
-        android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_margin="30dp"
-        android:id="@+id/best_title"/>
+        android:text="Best"
+        android:textColor="@color/black"
+        android:textSize="30dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/best_title"
-        android:text="Single Time: "
         android:id="@+id/single_time"
-        android:layout_margin="20dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9.29"
-        android:layout_toRightOf="@+id/single_time"
         android:layout_below="@+id/best_title"
         android:layout_margin="20dp"
-        android:id="@+id/value_single_time" />
+        android:text="Single Time: " />
 
     <TextView
+        android:id="@+id/value_single_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/single_time"
-        android:text="Mean of 3: "
+        android:layout_below="@+id/best_title"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@+id/single_time"
+        android:text="9.29" />
+
+    <TextView
         android:id="@+id/mean_of_3"
-        android:layout_margin="20dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9.29"
-        android:layout_toRightOf="@+id/mean_of_3"
         android:layout_below="@+id/single_time"
         android:layout_margin="20dp"
-        android:id="@+id/value_mean_of_3" />
+        android:text="Mean of 3: " />
 
     <TextView
+        android:id="@+id/value_mean_of_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mean_of_3"
-        android:text="Avg of 5: "
+        android:layout_below="@+id/single_time"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@+id/mean_of_3"
+        android:text="9.29" />
+
+    <TextView
         android:id="@+id/avg_of_5"
-        android:layout_margin="20dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9.29"
-        android:layout_toRightOf="@+id/avg_of_5"
         android:layout_below="@+id/mean_of_3"
         android:layout_margin="20dp"
-        android:id="@+id/value_avg_of_5" />
+        android:text="Avg of 5: " />
 
     <TextView
+        android:id="@+id/value_avg_of_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/avg_of_5"
-        android:text="Avg of 12: "
+        android:layout_below="@+id/mean_of_3"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@+id/avg_of_5"
+        android:text="9.29" />
+
+    <TextView
         android:id="@+id/avg_of_12"
-        android:layout_margin="20dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9.29"
-        android:layout_toRightOf="@+id/avg_of_12"
         android:layout_below="@+id/avg_of_5"
         android:layout_margin="20dp"
-        android:id="@+id/value_avg_of_12" />
+        android:text="Avg of 12: " />
 
     <TextView
+        android:id="@+id/value_avg_of_12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/avg_of_12"
-        android:text="Mean of 50: "
+        android:layout_below="@+id/avg_of_5"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@+id/avg_of_12"
+        android:text="9.29" />
+
+    <TextView
         android:id="@+id/mean_of_50"
-        android:layout_margin="20dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9.29"
-        android:layout_toRightOf="@+id/mean_of_50"
         android:layout_below="@+id/avg_of_12"
         android:layout_margin="20dp"
-        android:id="@+id/value_mean_of_50" />
+        android:text="Mean of 50: " />
 
     <TextView
+        android:id="@+id/value_mean_of_50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mean_of_50"
-        android:text="Mean of 100: "
+        android:layout_below="@+id/avg_of_12"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@+id/mean_of_50"
+        android:text="9.29" />
+
+    <TextView
         android:id="@+id/mean_of_100"
-        android:layout_margin="20dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="9.29"
-        android:layout_toRightOf="@+id/mean_of_100"
         android:layout_below="@+id/mean_of_50"
         android:layout_margin="20dp"
-        android:id="@+id/value_mean_of_100" />
+        android:text="Mean of 100: " />
 
-
-
+    <TextView
+        android:id="@+id/value_mean_of_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mean_of_50"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@+id/mean_of_100"
+        android:text="9.29" />
 
 
 </RelativeLayout>

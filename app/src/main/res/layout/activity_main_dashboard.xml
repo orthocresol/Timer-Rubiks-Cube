@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".finaldesign.TheMainActivityCustomNavJava">
+    tools:context=".aatimer.MainDashboardActivity">
 
-    <org.timerrubikscube.finaldesign.widget.CustomViewPager
+    <org.timerrubikscube.aatimer.widget.CustomViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_custom_viewpager"/>

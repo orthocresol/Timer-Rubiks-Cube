@@ -1,4 +1,4 @@
-package org.timerrubikscube.finaldesign.widget;
+package org.timerrubikscube.aatimer.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

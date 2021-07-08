@@ -1,7 +1,6 @@
-package org.timerrubikscube.nonactivityclass;
+package org.timerrubikscube.aatimer.nonactivityclass;
 
 import com.google.firebase.firestore.Exclude;
-import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
 

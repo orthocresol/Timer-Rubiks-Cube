@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TimerRubiksCube">
-        <activity android:name=".finaldesign.TheMainActivityCustomNavJava"></activity>
+        <activity android:name=".aatimer.MainDashboardActivity"></activity>
 
-        <activity android:name=".SignInSignUpActivity">
+        <activity android:name=".aatimer.SignInSignUpActivity">
+
+        </activity>
+        <activity android:name=".aatimer.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".SplashScreenActivity">
-
         </activity>
 
         <meta-data

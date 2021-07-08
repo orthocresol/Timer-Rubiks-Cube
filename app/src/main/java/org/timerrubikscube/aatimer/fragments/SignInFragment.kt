@@ -1,4 +1,4 @@
-package org.timerrubikscube.fragments
+package org.timerrubikscube.aatimer.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,7 +20,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import org.timerrubikscube.R
-import org.timerrubikscube.finaldesign.TheMainActivityCustomNavJava
+import org.timerrubikscube.aatimer.MainDashboardActivity
 
 class SignInFragment : Fragment() {
 
@@ -102,7 +102,7 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener(OnCompleteListener {task ->
                 if(task.isSuccessful){
                     Log.d("SignIn", "signIn: signed in successfully")
-                    val intent = Intent(activity, TheMainActivityCustomNavJava::class.java)
+                    val intent = Intent(activity, MainDashboardActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
                 }

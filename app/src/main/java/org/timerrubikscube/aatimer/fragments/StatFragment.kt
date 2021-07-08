@@ -1,4 +1,4 @@
-package org.timerrubikscube.finaldesign.fragments
+package org.timerrubikscube.aatimer.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,16 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import org.timerrubikscube.R
-import org.timerrubikscube.finaldesign.stat.StatFinalViewPagerAdapter
-import org.timerrubikscube.finaldesign.widget.CustomViewPager
-import org.timerrubikscube.nonactivityclass.Item
+import org.timerrubikscube.aatimer.stat.StatViewPagerAdapter
+import org.timerrubikscube.aatimer.widget.CustomViewPager
 
-class FinalStatFragment : Fragment() {
+class StatFragment : Fragment() {
 
     lateinit var mView : View
     lateinit var tabLayout: TabLayout
@@ -28,7 +24,7 @@ class FinalStatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_final_stat, container, false)
+        mView = inflater.inflate(R.layout.fragment_stat, container, false)
         initVariables()
 
         return mView
@@ -39,7 +35,7 @@ class FinalStatFragment : Fragment() {
     private fun initVariables() {
         tabLayout = mView.findViewById(R.id.stat_tabLayout)
         viewPager = mView.findViewById(R.id.stat_viewPager)
-        val _adapter = StatFinalViewPagerAdapter(
+        val _adapter = StatViewPagerAdapter(
             childFragmentManager,
             FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         )

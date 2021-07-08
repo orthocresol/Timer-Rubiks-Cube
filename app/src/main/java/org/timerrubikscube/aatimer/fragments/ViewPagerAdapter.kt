@@ -1,18 +1,18 @@
-package org.timerrubikscube.finaldesign.fragments
+package org.timerrubikscube.aatimer.fragments
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
-class FinalViewPagerAdapter(fm: FragmentManager, behavior: Int) :
+class ViewPagerAdapter(fm: FragmentManager, behavior: Int) :
     FragmentStatePagerAdapter(fm, behavior) {
     override fun getItem(position: Int): Fragment {
         when(position){
-            1 -> return FinalTimerFragment()
-            0 -> return FinalStatFragment()
-            2 -> return FinalRecordFragment()
+            1 -> return TimerFragment()
+            0 -> return StatFragment()
+            2 -> return RecordFragment()
         }
-        return FinalTimerFragment()
+        return TimerFragment()
     }
 
     override fun getCount(): Int {

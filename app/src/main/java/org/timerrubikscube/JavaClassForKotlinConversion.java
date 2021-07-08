@@ -1,6 +1,5 @@
 package org.timerrubikscube;
 
-import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,10 +15,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.yashovardhan99.timeit.Timer;
 
 import org.jetbrains.annotations.NotNull;
-import org.timerrubikscube.finaldesign.fragments.FinalTimerFragment;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import org.timerrubikscube.aatimer.fragments.TimerFragment;
 
 public class JavaClassForKotlinConversion {
     TextWatcher loginTextWatcher = new TextWatcher() {
@@ -41,7 +37,7 @@ public class JavaClassForKotlinConversion {
     Button btnLogin;
 
 
-    FinalTimerFragment.FragmentTimerListener listener;
+    TimerFragment.FragmentTimerListener listener;
     Button b = null;
     Timer timer;
     ViewPager viewPager;

@@ -1,4 +1,4 @@
-package org.timerrubikscube.nonactivityclass
+package org.timerrubikscube.aatimer.nonactivityclass
 
 import kotlin.random.Random
 

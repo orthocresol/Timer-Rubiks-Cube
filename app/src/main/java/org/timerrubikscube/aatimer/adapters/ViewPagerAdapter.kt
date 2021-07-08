@@ -1,4 +1,4 @@
-package org.timerrubikscube.fragments.adapters
+package org.timerrubikscube.aatimer.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

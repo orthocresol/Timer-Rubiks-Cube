@@ -1,4 +1,4 @@
-package org.timerrubikscube.fragments.adapters;
+package org.timerrubikscube.aatimer.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 import org.timerrubikscube.R;
-import org.timerrubikscube.nonactivityclass.Item;
+import org.timerrubikscube.aatimer.nonactivityclass.Item;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

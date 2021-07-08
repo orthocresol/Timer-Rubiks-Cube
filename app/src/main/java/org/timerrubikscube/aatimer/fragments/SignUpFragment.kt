@@ -1,4 +1,4 @@
-package org.timerrubikscube.fragments
+package org.timerrubikscube.aatimer.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.tasks.OnCompleteListener
@@ -21,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import org.timerrubikscube.R
-import org.timerrubikscube.finaldesign.TheMainActivityCustomNavJava
+import org.timerrubikscube.aatimer.MainDashboardActivity
 
 
 class SignUpFragment : Fragment() {
@@ -120,7 +118,7 @@ class SignUpFragment : Fragment() {
                                 Log.d("SignUp", "Name is updated")
                             }
                         }
-                    val intent = Intent(activity, TheMainActivityCustomNavJava::class.java)
+                    val intent = Intent(activity, MainDashboardActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
                 } else {

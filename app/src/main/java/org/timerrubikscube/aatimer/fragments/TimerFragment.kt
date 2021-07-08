@@ -1,4 +1,4 @@
-package org.timerrubikscube.finaldesign.fragments
+package org.timerrubikscube.aatimer.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -18,12 +18,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.yashovardhan99.timeit.Stopwatch
 import com.yashovardhan99.timeit.Timer
 import org.timerrubikscube.R
-import org.timerrubikscube.nonactivityclass.Item
-import org.timerrubikscube.nonactivityclass.ScrambleGenerator
+import org.timerrubikscube.aatimer.nonactivityclass.Item
+import org.timerrubikscube.aatimer.nonactivityclass.ScrambleGenerator
 import java.util.*
 
 
-class FinalTimerFragment : Fragment() {
+class TimerFragment : Fragment() {
     lateinit var scramble: TextView
     lateinit var nextScrambleBtn: ImageButton
     lateinit var timeTv: TextView
@@ -66,7 +66,7 @@ class FinalTimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_final_timer, container, false)
+        val view = inflater.inflate(R.layout.fragment_timer, container, false)
         initVariable(view)
         clickListeners()
 

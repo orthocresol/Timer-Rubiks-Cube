@@ -1,4 +1,4 @@
-package org.timerrubikscube.finaldesign.stat
+package org.timerrubikscube.aatimer.stat
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,8 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import org.timerrubikscube.R
-import org.timerrubikscube.fragments.adapters.StatAdapter
-import org.timerrubikscube.nonactivityclass.Item
+import org.timerrubikscube.aatimer.nonactivityclass.Item
 
 
 class StatGraphFragment : Fragment() {

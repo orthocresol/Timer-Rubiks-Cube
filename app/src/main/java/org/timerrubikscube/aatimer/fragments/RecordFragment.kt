@@ -1,4 +1,4 @@
-package org.timerrubikscube.finaldesign.fragments
+package org.timerrubikscube.aatimer.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import org.timerrubikscube.R
-import org.timerrubikscube.nonactivityclass.Item
+import org.timerrubikscube.aatimer.nonactivityclass.Item
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FinalRecordFragment : Fragment() {
+class RecordFragment : Fragment() {
 
     lateinit var mView: View
     lateinit var singleBestTV : TextView
@@ -31,7 +31,7 @@ class FinalRecordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_final_record, container, false)
+        mView = inflater.inflate(R.layout.fragment_record, container, false)
         initVariables(mView)
         getItems()
 

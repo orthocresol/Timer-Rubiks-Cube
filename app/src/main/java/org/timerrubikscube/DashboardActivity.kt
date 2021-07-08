@@ -1,32 +1,6 @@
 package org.timerrubikscube
 //obsolote, I changed lines
 
-import android.content.Intent
-import android.media.Image
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.RelativeLayout
-import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
-import com.yashovardhan99.timeit.Stopwatch
-import org.timerrubikscube.nonactivityclass.Item
-import org.timerrubikscube.nonactivityclass.ScrambleGenerator
-import java.util.*
 /*
 class DashboardActivity : AppCompatActivity() {
 

@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".finaldesign.fragments.FinalStatFragment">
+    tools:context=".aatimer.fragments.StatFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/stat_tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorSecondary" />
-    <org.timerrubikscube.finaldesign.widget.CustomViewPager
+    <org.timerrubikscube.aatimer.widget.CustomViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/stat_tabLayout"
