@@ -36,12 +36,10 @@ public class StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         Item item = arrayList.get(position);
 
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm dd-mm");
-        String strDate = dateFormat.format(item.getTimestamp());
 
         holder.serialTV.setText(String.valueOf(position + 1));
         holder.timeTV.setText(String.valueOf(item.getTiming()));
-        holder.dateTV.setText(strDate);
+        holder.dateTV.setText(item.getTimestamp());
         holder.scrambleTV.setText(item.getScramble());
     }
 

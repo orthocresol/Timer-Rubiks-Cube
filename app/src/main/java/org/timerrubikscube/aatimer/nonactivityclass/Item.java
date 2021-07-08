@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Item {
     float timing;
-    Date timestamp;
+    String timestamp; //date -> string
     long timeFromBeginning;
     String scramble;
     String id;
@@ -14,7 +14,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(float timing, Date timestamp, long timeFromBeginning, String scramble){
+    public Item(float timing, String timestamp, long timeFromBeginning, String scramble){
         this.timing = timing;
         this.timestamp = timestamp;
         this.timeFromBeginning = timeFromBeginning;
@@ -30,11 +30,11 @@ public class Item {
     }
 
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -18,6 +18,8 @@
         android:fontFamily="@font/source_code_pro"
         android:gravity="center"
         android:hint="Scramble"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:textColor="@color/green_800"
         android:textSize="23sp" />
 

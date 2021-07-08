@@ -24,7 +24,7 @@ class ScrambleGenerator {
             iteration++
             prev = random
 
-            if(iteration == 10) scramble += "\n"
+            //if(iteration == 10) scramble += "\n"
         }
         return scramble
     }

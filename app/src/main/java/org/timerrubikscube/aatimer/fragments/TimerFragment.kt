@@ -24,7 +24,8 @@ import com.yashovardhan99.timeit.Timer
 import org.timerrubikscube.R
 import org.timerrubikscube.aatimer.nonactivityclass.Item
 import org.timerrubikscube.aatimer.nonactivityclass.ScrambleGenerator
-import org.w3c.dom.Text
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -237,10 +238,13 @@ class TimerFragment : Fragment() {
         getItems()
         checkForARecord()
         val strScramble = scramble.text.toString()
-        val date = Date()
+
+        val dateFormat: DateFormat = SimpleDateFormat("hh:mm dd-MMM")
+        val dateStr = dateFormat.format(Date())
+
         val timing = timeTv.text.toString().toFloat()
         val timeFromBeginning = System.currentTimeMillis()
-        val item = Item(timing, date, timeFromBeginning, strScramble)
+        val item = Item(timing, dateStr, timeFromBeginning, strScramble)
         db.collection("Solve $userID").add(item)
     }
 
