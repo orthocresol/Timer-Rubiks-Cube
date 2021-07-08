@@ -5,7 +5,9 @@
     android:id="@+id/timer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".aatimer.fragments.TimerFragment">
+    tools:context=".aatimer.fragments.TimerFragment"
+    >
+
 
     <TextView
         android:id="@+id/timer_scramble_tv"
@@ -20,16 +22,54 @@
         android:textSize="23sp" />
 
     <TextView
+        android:id="@+id/timer_ao5tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8s!"
+        android:layout_below="@id/timer_enable_inspection"
+        android:layout_marginLeft="20dp"
+        android:text="Avg of 5"
+        android:textColor="@color/colorSecondary" />
+
+    <TextView
+        android:id="@+id/timer_ao12tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timer_ao5tv"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Avg of 12"
+        android:textColor="@color/colorSecondary" />
+
+    <TextView
+        android:id="@+id/timer_ao5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timer_enable_inspection"
+        android:layout_marginLeft="100dp"
+        android:text="DNF"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/timer_ao12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timer_ao5tv"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:text="DNF"
+        android:textColor="@color/black" />
+
+    <TextView
         android:id="@+id/timer_alert_8s"
-        android:layout_alignParentRight="true"
-        android:textSize="30sp"
-        android:textColor="@color/red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/timer_time"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="40dp"
-        android:layout_marginRight="20dp"/>
+        android:text="8s!"
+        android:textColor="@color/red"
+        android:textSize="30sp" />
 
     <ImageButton
         android:id="@+id/timer_next"
@@ -62,13 +102,13 @@
         android:textSize="40sp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/timer_enable_inspection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enable inspection"
-        android:id="@+id/timer_enable_inspection"
-        android:checked="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/timer_scramble_tv"
-        android:layout_margin="20dp"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:checked="true"
+        android:text="Enable inspection" />
 
 </RelativeLayout>

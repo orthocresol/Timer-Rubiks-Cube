@@ -1,122 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".aatimer.fragments.RecordFragment">
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/record_best_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="Best"
+            android:textColor="@color/green_600"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/record_best_title"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Single Best" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Mean of 3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Average of 5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Average of 12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Mean of 50" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Mean of 100" />
 
 
-    <TextView
-        android:id="@+id/best_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="30dp"
-        android:text="Best"
-        android:textColor="@color/black"
-        android:textSize="30dp" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/single_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/best_title"
-        android:layout_margin="20dp"
-        android:text="Single Time: " />
+        <LinearLayout
+            android:id="@+id/record_best_ll"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/record_best_title"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="50dp"
+            android:gravity="right"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/value_single_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/best_title"
-        android:layout_margin="20dp"
-        android:layout_toRightOf="@+id/single_time"
-        android:text="9.29" />
+            <TextView
+                android:id="@+id/value_single_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
 
-    <TextView
-        android:id="@+id/mean_of_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/single_time"
-        android:layout_margin="20dp"
-        android:text="Mean of 3: " />
+            <TextView
+                android:id="@+id/value_mean_of_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
 
-    <TextView
-        android:id="@+id/value_mean_of_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/single_time"
-        android:layout_margin="20dp"
-        android:layout_toRightOf="@+id/mean_of_3"
-        android:text="9.29" />
+            <TextView
+                android:id="@+id/value_avg_of_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
 
-    <TextView
-        android:id="@+id/avg_of_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mean_of_3"
-        android:layout_margin="20dp"
-        android:text="Avg of 5: " />
+            <TextView
+                android:id="@+id/value_avg_of_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
 
-    <TextView
-        android:id="@+id/value_avg_of_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mean_of_3"
-        android:layout_margin="20dp"
-        android:layout_toRightOf="@+id/avg_of_5"
-        android:text="9.29" />
+            <TextView
+                android:id="@+id/value_mean_of_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
 
-    <TextView
-        android:id="@+id/avg_of_12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/avg_of_5"
-        android:layout_margin="20dp"
-        android:text="Avg of 12: " />
-
-    <TextView
-        android:id="@+id/value_avg_of_12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/avg_of_5"
-        android:layout_margin="20dp"
-        android:layout_toRightOf="@+id/avg_of_12"
-        android:text="9.29" />
-
-    <TextView
-        android:id="@+id/mean_of_50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/avg_of_12"
-        android:layout_margin="20dp"
-        android:text="Mean of 50: " />
-
-    <TextView
-        android:id="@+id/value_mean_of_50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/avg_of_12"
-        android:layout_margin="20dp"
-        android:layout_toRightOf="@+id/mean_of_50"
-        android:text="9.29" />
-
-    <TextView
-        android:id="@+id/mean_of_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mean_of_50"
-        android:layout_margin="20dp"
-        android:text="Mean of 100: " />
-
-    <TextView
-        android:id="@+id/value_mean_of_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mean_of_50"
-        android:layout_margin="20dp"
-        android:layout_toRightOf="@+id/mean_of_100"
-        android:text="9.29" />
+            <TextView
+                android:id="@+id/value_mean_of_100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
 
 
-</RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/record_current_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/record_best_ll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="Current"
+            android:textColor="@color/green_600"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/record_current_title"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Last Solve" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Mean of 3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Average of 5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Average of 12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Mean of 50" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Mean of 100" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/record_current_title"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="50dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            android:layout_marginBottom="100dp">
+
+            <TextView
+                android:id="@+id/value_single_time_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
+
+            <TextView
+                android:id="@+id/value_mean_of_3_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
+
+            <TextView
+                android:id="@+id/value_avg_of_5_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
+
+            <TextView
+                android:id="@+id/value_avg_of_12_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
+
+            <TextView
+                android:id="@+id/value_mean_of_50_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
+
+            <TextView
+                android:id="@+id/value_mean_of_100_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DNF" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</ScrollView>

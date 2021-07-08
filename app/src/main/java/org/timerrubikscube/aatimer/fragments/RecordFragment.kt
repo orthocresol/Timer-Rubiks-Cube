@@ -24,6 +24,13 @@ class RecordFragment : Fragment() {
     lateinit var mo50TV : TextView
     lateinit var mo100TV : TextView
 
+    lateinit var csingleBestTV : TextView
+    lateinit var cmo3TV : TextView
+    lateinit var cao5TV : TextView
+    lateinit var cao12TV : TextView
+    lateinit var cmo50TV : TextView
+    lateinit var cmo100TV : TextView
+
     val userID = FirebaseAuth.getInstance().currentUser?.uid
     val collectionRef = FirebaseFirestore.getInstance().collection("Solve $userID")
     override fun onCreateView(
@@ -49,6 +56,12 @@ class RecordFragment : Fragment() {
         ao12TV = mView.findViewById(R.id.value_avg_of_12)
         mo50TV = mView.findViewById(R.id.value_mean_of_50)
         mo100TV = mView.findViewById(R.id.value_mean_of_100)
+        csingleBestTV = mView.findViewById(R.id.value_single_time_c)
+        cmo3TV = mView.findViewById(R.id.value_mean_of_3_c)
+        cao5TV = mView.findViewById(R.id.value_avg_of_5_c)
+        cao12TV = mView.findViewById(R.id.value_avg_of_12_c)
+        cmo50TV = mView.findViewById(R.id.value_mean_of_50_c)
+        cmo100TV = mView.findViewById(R.id.value_mean_of_100_c)
     }
 
     private fun getItems() {
@@ -68,8 +81,19 @@ class RecordFragment : Fragment() {
                 findao12(itemList)
                 findmo50(itemList)
                 findmo100(itemList)
+
+                findCurrentSingleBest(itemList)
+                findCurrentmo3(itemList)
+                findCurrentao5(itemList)
+                findCurrentao12(itemList)
+                findCurrentmo50(itemList)
+                findCurrentmo100(itemList)
+
             }
     }
+
+
+
 
     private fun findmo100(itemList: ArrayList<Item>) {
         if(itemList.size < 100){
@@ -92,6 +116,20 @@ class RecordFragment : Fragment() {
         mo100TV.text = String.format("%.2f", lowest)
     }
 
+    private fun findCurrentmo100(itemList: ArrayList<Item>) {
+        if(itemList.size < 100){
+            cmo100TV.text = "DNF"
+            return
+        }
+        var lowest = 0.00f
+        for(i in 0..99){
+            lowest += itemList[i].timing
+        }
+        lowest /= 100
+        cmo100TV.text = String.format("%.2f", lowest)
+
+    }
+
     private fun findmo50(itemList: ArrayList<Item>) {
         if(itemList.size < 50){
             mo50TV.text = "DNF"
@@ -111,6 +149,20 @@ class RecordFragment : Fragment() {
         }
         lowest /= 50
         mo50TV.text = String.format("%.2f", lowest)
+    }
+
+    private fun findCurrentmo50(itemList: ArrayList<Item>) {
+        if(itemList.size < 50){
+            cmo50TV.text = "DNF"
+            return
+        }
+
+        var lowest = 0.00f
+        for(i in 0..49){
+            lowest += itemList[i].timing
+        }
+        lowest /= 50
+        cmo50TV.text = String.format("%.2f", lowest)
     }
 
     private fun findao12(itemList: ArrayList<Item>) {
@@ -136,6 +188,24 @@ class RecordFragment : Fragment() {
         }
         lowest /= 10
         ao12TV.text = String.format("%.2f", lowest)
+    }
+
+    private fun findCurrentao12(itemList: ArrayList<Item>) {
+        if(itemList.size < 12){
+            cao12TV.text = "DNF"
+            return
+        }
+        val toSort = ArrayList<Float>()
+        for(i in 0..11){
+            toSort.add(itemList[i].timing)
+        }
+        Collections.sort(toSort)
+        var aggregate = 0.00f
+        for(j in 1..10){
+            aggregate += toSort[j]
+        }
+        aggregate /= 10
+        cao12TV.text = String.format("%.2f", aggregate)
     }
 
     private fun findao5(itemList: ArrayList<Item>) {
@@ -164,6 +234,26 @@ class RecordFragment : Fragment() {
 
     }
 
+    private fun findCurrentao5(itemList: ArrayList<Item>) {
+        if(itemList.size < 5){
+            cao5TV.text = "DNF"
+            return
+        }
+        val toSort = ArrayList<Float>()
+        for(i in 0..4){
+            toSort.add(itemList[i].timing)
+        }
+        Collections.sort(toSort)
+        var aggregate = 0.00f
+        for(j in 1..3){
+            aggregate += toSort[j]
+        }
+        aggregate /= 3
+        cao5TV.text = String.format("%.2f", aggregate)
+    }
+
+
+
     private fun findmo3(itemList: ArrayList<Item>) {
         if(itemList.size < 3){
             mo3TV.text = "DNF"
@@ -183,6 +273,15 @@ class RecordFragment : Fragment() {
 
     }
 
+    private fun findCurrentmo3(itemList: ArrayList<Item>) {
+        if(itemList.size < 3){
+            cmo3TV.text = "DNF"
+            return
+        }
+        val temp = (itemList[0].timing + itemList[1].timing + itemList[2].timing) / 3
+        cmo3TV.text = String.format("%.2f", temp)
+    }
+
     private fun findSingleBest(itemList: ArrayList<Item>) {
         if(itemList.size < 1){
             singleBestTV.text = "DNF"
@@ -196,6 +295,14 @@ class RecordFragment : Fragment() {
             }
         }
         singleBestTV.text = String.format("%.2f", lowest)
+    }
+
+    private fun findCurrentSingleBest(itemList: ArrayList<Item>) {
+        if(itemList.size < 1){
+            csingleBestTV.text = "DNF"
+            return
+        }
+        csingleBestTV.text = String.format("%.2f", itemList[0].timing)
     }
 
 }
