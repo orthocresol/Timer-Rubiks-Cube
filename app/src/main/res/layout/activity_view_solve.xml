@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aatimer.ViewSolveActivity"
+    android:background="@color/colorSecondary">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_keyboard_backspace_24"
+        android:layout_margin="20dp"
+        android:background="?android:selectableItemBackground"
+        android:id="@+id/view_solve_back" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12.50"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:fontFamily="@font/duru_sans"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:id="@+id/view_solve_time" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R2 U2 R U D D' L2 ..."
+        android:textSize="18dp"
+        android:layout_margin="40dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view_solve_time"
+        android:id="@+id/view_solve_scramble" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK      "
+        android:checked="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view_solve_scramble"
+        android:layout_marginTop="50dp"
+        android:id="@+id/view_solve_ok_switch" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+2      "
+        android:checked="false"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view_solve_ok_switch"
+        android:layout_marginTop="30dp"
+        android:id="@+id/view_solve_plus2_switch" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DNF     "
+        android:checked="false"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view_solve_plus2_switch"
+        android:layout_marginTop="30dp"
+        android:id="@+id/view_solve_dnf_switch" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:backgroundTint="@color/red"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/view_solve_dnf_switch"
+        android:id="@+id/view_solve_delete" />
+
+
+</RelativeLayout>

@@ -254,7 +254,7 @@ class TimerFragment : Fragment() {
 
         val timing = timeTv.text.toString().toFloat()
         val timeFromBeginning = System.currentTimeMillis()
-        val item = Item(timing, dateStr, timeFromBeginning, strScramble)
+        val item = Item(timing, dateStr, timeFromBeginning, strScramble, true, false, false)
         db.collection("Solve $userID").add(item)
     }
 

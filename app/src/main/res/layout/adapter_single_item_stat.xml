@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/single_item_stat_mainLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -9,28 +10,26 @@
         android:id="@+id/serial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:hint="1" />
+        android:layout_margin="10dp"
+        android:text="1" />
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:hint="11.49" />
+        android:layout_alignTop="@+id/serial"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/duru_sans"
+        android:text="12.40"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:hint="10-12-13" />
-
-    <TextView
-        android:id="@+id/scramble"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="scramble" />
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:text="8:12 12-Apr" />
 
 
-</LinearLayout>
+</RelativeLayout>
