@@ -1,6 +1,7 @@
 package org.timerrubikscube.aatimer.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.Query
 import com.yashovardhan99.timeit.Stopwatch
 import com.yashovardhan99.timeit.Timer
 import org.timerrubikscube.R
+import org.timerrubikscube.aatimer.ScramblePictureActivity
 import org.timerrubikscube.aatimer.nonactivityclass.Item
 import org.timerrubikscube.aatimer.nonactivityclass.ScrambleGenerator
 import java.text.DateFormat
@@ -31,6 +34,7 @@ import java.util.*
 
 class TimerFragment : Fragment() {
     lateinit var scramble: TextView
+    lateinit var scrambleShow: MaterialButton
     lateinit var nextScrambleBtn: ImageButton
     lateinit var timeTv: TextView
     lateinit var goBtn: AppCompatButton
@@ -175,6 +179,12 @@ class TimerFragment : Fragment() {
     }
 
     private fun clickListeners() {
+        scrambleShow.setOnClickListener {
+            val intent = Intent(activity, ScramblePictureActivity::class.java)
+            intent.putExtra( "scramble", scramble.text.toString())
+            startActivity(intent)
+        }
+
         nextScrambleBtn.setOnClickListener(View.OnClickListener {
             scramble.text = ScrambleGenerator().giveScramble()
         })
@@ -250,6 +260,7 @@ class TimerFragment : Fragment() {
 
     private fun reappearElements() {
         isRunning = false
+        scrambleShow.visibility = View.VISIBLE
         sw_inspection.visibility = View.VISIBLE
         ao5Tv.visibility = View.VISIBLE
         ao12Tv.visibility = View.VISIBLE
@@ -264,6 +275,7 @@ class TimerFragment : Fragment() {
 
     private fun disappearElements() {
         isRunning = true
+        scrambleShow.visibility = View.INVISIBLE
         sw_inspection.visibility = View.INVISIBLE
         ao5Tv.visibility = View.INVISIBLE
         ao12Tv.visibility = View.INVISIBLE
@@ -277,6 +289,7 @@ class TimerFragment : Fragment() {
 
     private fun initVariable(view: View) {
         scramble = view.findViewById(R.id.timer_scramble_tv)
+        scrambleShow = view.findViewById(R.id.timer_scramble_show_btn)
         scramble.text = ScrambleGenerator().giveScramble()
         ao5Tv = view.findViewById(R.id.timer_ao5)
         ao12Tv = view.findViewById(R.id.timer_ao12)

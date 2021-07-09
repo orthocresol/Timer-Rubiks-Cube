@@ -8,6 +8,14 @@
     tools:context=".aatimer.fragments.TimerFragment"
     >
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="show"
+        android:layout_alignTop="@+id/timer_enable_inspection"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/timer_scramble_show_btn"/>
 
     <TextView
         android:id="@+id/timer_scramble_tv"
@@ -18,7 +26,7 @@
         android:fontFamily="@font/source_code_pro"
         android:gravity="center"
         android:hint="Scramble"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="50dp"
         android:textColor="@color/green_800"
         android:textSize="23sp" />
