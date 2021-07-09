@@ -23,7 +23,7 @@
         app:cnb_orientationMode="horizontal"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:elevation="8dp"/>
 
 

@@ -40,18 +40,16 @@ class TimerFragment : Fragment() {
     lateinit var goBtn: AppCompatButton
     lateinit var layout: RelativeLayout
     lateinit var stopwatch: Stopwatch
-    lateinit var alertTv : TextView
-    lateinit var ao5Tv : TextView
-    lateinit var ao12Tv : TextView
+    lateinit var alertTv: TextView
+    lateinit var ao5Tv: TextView
+    lateinit var ao12Tv: TextView
     var timer: Timer = Timer(15000)
     lateinit var _context: Context
     lateinit var sw_inspection: SwitchMaterial
     var isInspectionOn = true
     var isInspecting = false
     var isRunning = false
-    var listener : FragmentTimerListener? = null
-
-
+    var listener: FragmentTimerListener? = null
 
 
     var userID = FirebaseAuth.getInstance().currentUser?.uid
@@ -77,7 +75,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun checkForARecord() {
-        var item : Item
+        var item: Item
         collectionRef
             .orderBy("timing", Query.Direction.ASCENDING)
             .limit(1)
@@ -87,7 +85,7 @@ class TimerFragment : Fragment() {
                     item = documentSnapshot.toObject(Item::class.java)
                     val currentTime = timeTv.text.toString().toFloat()
                     Log.d("oma", "checkForARecord: $currentTime ${item.timing}")
-                    if(currentTime <= item.timing){
+                    if (currentTime <= item.timing) {
                         //it's a record
                         showSnackbarForRecord()
                     }
@@ -124,40 +122,61 @@ class TimerFragment : Fragment() {
                 findCurrentao12(itemList)
             }
     }
+
     private fun findCurrentao5(itemList: ArrayList<Item>) {
-        if(itemList.size < 5){
+        if (itemList.size < 5) {
             ao5Tv.text = "DNF"
             return
         }
         val toSort = ArrayList<Float>()
-        for(i in 0..4){
-            toSort.add(itemList[i].timing)
+        var dnf = 0
+        for (i in 0..4) {
+            if (itemList[i].dnf) {
+                toSort.add(1000.00f)
+                dnf++
+            } else if (itemList[i].plus2) {
+                toSort.add(itemList[i].timing + 2.00f)
+            } else
+                toSort.add(itemList[i].timing)
         }
         Collections.sort(toSort)
         var aggregate = 0.00f
-        for(j in 1..3){
+        for (j in 1..3) {
             aggregate += toSort[j]
         }
         aggregate /= 3
-        ao5Tv.text = String.format("%.2f", aggregate)
+        if (dnf < 2)
+            ao5Tv.text = String.format("%.2f", aggregate)
+        else
+            ao5Tv.text = "DNF"
     }
 
     private fun findCurrentao12(itemList: ArrayList<Item>) {
-        if(itemList.size < 12){
+        if (itemList.size < 12) {
             ao12Tv.text = "DNF"
             return
         }
         val toSort = ArrayList<Float>()
-        for(i in 0..11){
-            toSort.add(itemList[i].timing)
+        var dnf = 0
+        for (i in 0..11) {
+            if (itemList[i].dnf) {
+                dnf++
+                toSort.add(1000.00f)
+            } else if (itemList[i].plus2) {
+                toSort.add(itemList[i].timing + 2.00f)
+            } else
+                toSort.add(itemList[i].timing)
         }
         Collections.sort(toSort)
         var aggregate = 0.00f
-        for(j in 1..10){
+        for (j in 1..10) {
             aggregate += toSort[j]
         }
         aggregate /= 10
-        ao12Tv.text = String.format("%.2f", aggregate)
+        if (dnf < 2)
+            ao12Tv.text = String.format("%.2f", aggregate)
+        else
+            ao12Tv.text = "DNF"
     }
 
     override fun onDetach() {
@@ -181,7 +200,7 @@ class TimerFragment : Fragment() {
     private fun clickListeners() {
         scrambleShow.setOnClickListener {
             val intent = Intent(activity, ScramblePictureActivity::class.java)
-            intent.putExtra( "scramble", scramble.text.toString())
+            intent.putExtra("scramble", scramble.text.toString())
             startActivity(intent)
         }
 
@@ -284,7 +303,7 @@ class TimerFragment : Fragment() {
         nextScrambleBtn.visibility = View.INVISIBLE
         layout.setBackgroundColor(ContextCompat.getColor(_context!!, R.color.green_300))
         timeTv.setTextSize(100F)
-        if(!isInspectionOn) timeTv.setText("00.00");
+        if (!isInspectionOn) timeTv.setText("00.00");
     }
 
     private fun initVariable(view: View) {
