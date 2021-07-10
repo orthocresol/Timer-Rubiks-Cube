@@ -27,6 +27,7 @@ import org.timerrubikscube.R
 import org.timerrubikscube.aatimer.ScramblePictureActivity
 import org.timerrubikscube.aatimer.nonactivityclass.Item
 import org.timerrubikscube.aatimer.nonactivityclass.ScrambleGenerator
+import org.timerrubikscube.aatimer.nonactivityclass.SessionManager
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,6 +44,7 @@ class TimerFragment : Fragment() {
     lateinit var alertTv: TextView
     lateinit var ao5Tv: TextView
     lateinit var ao12Tv: TextView
+    lateinit var sessionManager: SessionManager
     var timer: Timer = Timer(15000)
     lateinit var _context: Context
     lateinit var sw_inspection: SwitchMaterial
@@ -72,6 +74,12 @@ class TimerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         getItems()
+        isInspectionOn = sessionManager.enableInspection
+
+        if(sessionManager.scrambleButton)
+            scrambleShow.visibility = View.VISIBLE
+        else
+            scrambleShow.visibility = View.INVISIBLE
     }
 
     private fun checkForARecord() {
@@ -279,8 +287,9 @@ class TimerFragment : Fragment() {
 
     private fun reappearElements() {
         isRunning = false
-        scrambleShow.visibility = View.VISIBLE
-        sw_inspection.visibility = View.VISIBLE
+        if (sessionManager.scrambleButton)
+            scrambleShow.visibility = View.VISIBLE
+        //sw_inspection.visibility = View.VISIBLE
         ao5Tv.visibility = View.VISIBLE
         ao12Tv.visibility = View.VISIBLE
         if (isInspectionOn) isInspecting = false;
@@ -294,8 +303,11 @@ class TimerFragment : Fragment() {
 
     private fun disappearElements() {
         isRunning = true
-        scrambleShow.visibility = View.INVISIBLE
-        sw_inspection.visibility = View.INVISIBLE
+
+        if (sessionManager.scrambleButton)
+            scrambleShow.visibility = View.INVISIBLE
+
+        //sw_inspection.visibility = View.INVISIBLE
         ao5Tv.visibility = View.INVISIBLE
         ao12Tv.visibility = View.INVISIBLE
         scramble.visibility = View.INVISIBLE
@@ -307,8 +319,13 @@ class TimerFragment : Fragment() {
     }
 
     private fun initVariable(view: View) {
+        sessionManager = SessionManager(context)
+
+
         scramble = view.findViewById(R.id.timer_scramble_tv)
         scrambleShow = view.findViewById(R.id.timer_scramble_show_btn)
+
+
         scramble.text = ScrambleGenerator().giveScramble()
         ao5Tv = view.findViewById(R.id.timer_ao5)
         ao12Tv = view.findViewById(R.id.timer_ao12)

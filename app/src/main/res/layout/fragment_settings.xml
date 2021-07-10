@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".aatimer.fragments.SettingsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorSecondary"
+            android:textSize="25sp"
+            android:layout_margin="30dp"
+            android:id="@+id/settings_settings_title"/>
+
+        <View
+            android:id="@+id/settings_divider_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_below="@+id/settings_settings_title"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp"
+            android:layout_below="@+id/settings_divider_1"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/settings_profile_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asif Ahmed"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_below="@+id/settings_profile_title"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/settings_username" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asifahmed.mit@gmail.com"
+            android:textSize="16sp"
+            android:layout_below="@+id/settings_username"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="60dp"
+            android:id="@+id/settings_user_email" />
+
+        <View
+            android:id="@+id/settings_divider0"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_below="@+id/settings_user_email"
+            android:layout_margin="20dp"/>
+
+
+
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_sw_enable_inspection"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/settings_divider0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/settings_sw_enable_inspection"
+            android:text="Enable Inspection"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/settings_tv_enable_inspection"
+            android:textColor="@color/black"/>
+
+        <View
+            android:id="@+id/settings_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_below="@+id/settings_sw_enable_inspection"
+            android:layout_margin="20dp"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_sw_show_scramble_btn"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/settings_divider"
+            android:checked="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/settings_sw_show_scramble_btn"
+            android:text="Show Scramble Button"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/settings_tv_show_scramble_button"
+            android:textColor="@color/black"/>
+        <View
+            android:id="@+id/settings_divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_below="@+id/settings_sw_show_scramble_btn"
+            android:layout_margin="20dp"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_sw_enable_auto_logout"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/settings_divider2"
+            android:checked="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/settings_sw_enable_auto_logout"
+            android:text="Enable Auto Logout"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/settings_tv_enable_auto_logout"
+            android:textColor="@color/black"/>
+
+        <View
+            android:id="@+id/settings_divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_below="@+id/settings_sw_enable_auto_logout"
+            android:layout_margin="20dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/settings_divider3"
+            app:cornerRadius="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Delete all Solves"
+            app:backgroundTint="@color/red"
+            android:id="@+id/settings_delete_all_solves_btn"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_below="@+id/settings_delete_all_solves_btn"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="60dp"
+            app:cornerRadius="5dp"
+            android:text="Log out from your account"
+            android:id="@+id/settings_logout"/>
+    </RelativeLayout>
+
+</ScrollView>

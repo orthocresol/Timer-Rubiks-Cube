@@ -20,5 +20,9 @@
         android:icon="@drawable/ic_records"
         android:title="Records"
         app:cnb_backgroundColor="#FFEB3B" />
-
+    <item
+        android:id="@+id/settings_bottom_nav"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings"
+        app:cnb_backgroundColor="#FFEB3B" />
 </menu>

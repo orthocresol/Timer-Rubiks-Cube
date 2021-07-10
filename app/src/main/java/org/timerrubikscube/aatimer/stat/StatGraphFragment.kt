@@ -58,8 +58,18 @@ class StatGraphFragment : Fragment() {
         val dataset = ArrayList<Entry>()
         var inc = 0f
         for(item in itemList){
-            dataset.add(Entry(inc, item.timing))
-            inc++
+            if(item.dnf){
+                // no addition
+            }
+            else if(item.plus2){
+                dataset.add(Entry(inc, item.timing + 2.00f))
+                inc++
+            }
+            else if(item.ok){
+                dataset.add(Entry(inc, item.timing))
+                inc++
+            }
+
         }
         val lineDataSet = LineDataSet(dataset, "Solves")
         val iLineDataSet = ArrayList<ILineDataSet>()

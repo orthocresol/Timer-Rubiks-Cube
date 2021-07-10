@@ -119,6 +119,8 @@
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"
         android:checked="true"
-        android:text="Enable inspection" />
+        android:text="Enable inspection"
+        android:visibility="invisible"
+        tools:visibility="visible"/>
 
 </RelativeLayout>

@@ -11,11 +11,12 @@ class ViewPagerAdapter(fm: FragmentManager, behavior: Int) :
             1 -> return TimerFragment()
             0 -> return StatFragment()
             2 -> return RecordFragment()
+            3 -> return SettingsFragment()
         }
         return TimerFragment()
     }
 
     override fun getCount(): Int {
-        return 3
+        return 4
     }
 }

@@ -47,6 +47,9 @@ public class MainDashboardActivity extends AppCompatActivity implements TimerFra
                     case 2:
                         bottomNavigationBar.setItemSelected(R.id.record_bottom_nav, true);
                         break;
+                    case 3:
+                        bottomNavigationBar.setItemSelected(R.id.settings_bottom_nav, true);
+                        break;
                 }
             }
 
@@ -68,6 +71,9 @@ public class MainDashboardActivity extends AppCompatActivity implements TimerFra
                         break;
                     case R.id.record_bottom_nav:
                         viewPager.setCurrentItem(2);
+                        break;
+                    case R.id.settings_bottom_nav:
+                        viewPager.setCurrentItem(3);
                         break;
                 }
             }
