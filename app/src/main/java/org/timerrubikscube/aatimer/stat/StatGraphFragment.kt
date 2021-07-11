@@ -96,6 +96,7 @@ class StatGraphFragment : Fragment() {
         pieChart.description.isEnabled = false
         pieChart.centerText = "Solves"
         pieChart.animate()
+        pieChart.invalidate()
     }
 
     private fun showBarChart(itemList: java.util.ArrayList<Item>) {
@@ -137,6 +138,7 @@ class StatGraphFragment : Fragment() {
         barChart.data = barData
         barChart.description.text = "Solves"
         barChart.animateY(2000)
+        barChart.invalidate()
 
     }
 
