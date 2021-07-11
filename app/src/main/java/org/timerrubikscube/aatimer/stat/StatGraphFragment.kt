@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
@@ -52,7 +53,49 @@ class StatGraphFragment : Fragment() {
                 }
                 showLineChart(itemList)
                 showBarChart(itemList)
+                showPieChart(itemList)
             }
+    }
+
+    private fun showPieChart(itemList: java.util.ArrayList<Item>) {
+        val mapping = ArrayList<Int>()
+        for (i in 0..299) {
+            mapping.add(0);
+        }
+
+        val pieChart = mView.findViewById<PieChart>(R.id.graph_pie_chart)
+        val solves = ArrayList<PieEntry>()
+        for (item in itemList) {
+            if (item.dnf) {
+
+            } else if (item.plus2) {
+                val cast2int: Int = (item.timing + 2.00f).toInt()
+                if (cast2int < 299)
+                    mapping.set(cast2int, mapping.get(cast2int) + 1)
+            } else if (item.ok) {
+                val cast2int: Int = item.timing.toInt()
+                if (cast2int < 299)
+                    mapping.set(cast2int, mapping.get(cast2int) + 1)
+            }
+        }
+
+        for (i in 0..299) {
+            if (mapping.get(i) != 0) {
+                solves.add(PieEntry(mapping.get(i).toFloat(), i.toString()))
+            }
+        }
+        val pieDataSet = PieDataSet(solves, "time distribution")
+        pieDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+        pieDataSet.valueTextColor = Color.BLACK
+        pieDataSet.valueTextSize = 16f
+
+        val pieData = PieData(pieDataSet)
+
+
+        pieChart.data = pieData
+        pieChart.description.isEnabled = false
+        pieChart.centerText = "Solves"
+        pieChart.animate()
     }
 
     private fun showBarChart(itemList: java.util.ArrayList<Item>) {
