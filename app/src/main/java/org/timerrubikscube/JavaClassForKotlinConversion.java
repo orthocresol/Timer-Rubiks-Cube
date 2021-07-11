@@ -1,5 +1,6 @@
 package org.timerrubikscube;
 
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -10,6 +11,10 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.yashovardhan99.timeit.Timer;
@@ -17,7 +22,12 @@ import com.yashovardhan99.timeit.Timer;
 import org.jetbrains.annotations.NotNull;
 import org.timerrubikscube.aatimer.fragments.TimerFragment;
 
+import java.util.ArrayList;
+
 public class JavaClassForKotlinConversion {
+
+
+
     TextWatcher loginTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -45,8 +55,13 @@ public class JavaClassForKotlinConversion {
     ChipNavigationBar bottomNavigationBar;
 
     public void array() {
+        ArrayList<BarEntry> solves = new ArrayList<>();
 
-
+        solves.add(new BarEntry(1, 2));
+        BarDataSet barDataSet = new BarDataSet(solves, "time");
+        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextSize(16f);
         bottomNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
